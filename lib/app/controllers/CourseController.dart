@@ -12,11 +12,6 @@ class CourseController extends GetxController {
   var isLoading = false.obs;
   var isLoadingDetails = false.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
   Future loadAllCourses() async {
     isLoading(true);
     var userId;
@@ -28,9 +23,8 @@ class CourseController extends GetxController {
           coursesList.add(course);
         }
       }
+      isLoading(false);
     });
-
-    isLoading(false);
   }
 
   Future loadCourseDetails(id) async {

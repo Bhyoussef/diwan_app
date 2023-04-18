@@ -1,4 +1,3 @@
-import 'package:diwanapp/app/helpers/shared_preferences.dart';
 import 'package:diwanapp/app/models/offers_list_model.dart';
 import 'package:diwanapp/app/services/offers_service.dart';
 import 'package:get/get.dart';
