@@ -21,6 +21,7 @@ abstract class AppRoutes {
   static const String attendanceScreen = '/attendanceScreen';
   static const String vacationsScreen = '/vacationsScreen';
   static const String leaveRequestScreen = '/leaveRequestScreen';
+  static const String leaveRequestListScreen = '/leaveRequestListScreen';
   static const String loanRequestScreen = '/loanRequestScreen';
   static const String managementScreen = '/managementScreen';
   static const String profileScreen = '/profileScreen';

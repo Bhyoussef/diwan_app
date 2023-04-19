@@ -94,8 +94,8 @@ class LoginScreen extends StatelessWidget {
                                         left: 12,
                                         right: 12,
                                       ),
-                                      fillColor: AppColor.primaryGreyColor,
-                                      focusColor: AppColor.primaryGreyColor,
+                                      // fillColor: AppColor.primaryGreyColor,
+                                      // focusColor: AppColor.primaryGreyColor,
                                       prefixIcon: IconButton(
                                           icon: Image.asset(
                                             'assets/images/qidIcon.png',
@@ -150,45 +150,40 @@ class LoginScreen extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 18),
                                   Obx(
-                                    () => GestureDetector(
-                                      onTap: () => Navigator.of(context)
-                                          .pushNamed(AppRoutes.homeScreen),
-                                      child: Stack(
-                                        children: [
-                                          PadiwanButton(
-                                            onPressed: () {
+                                    () => Stack(
+                                      children: [
+                                        PadiwanButton(
+                                          onPressed: () {
+                                            controller.isLoading.isFalse
+                                                ? controller.login()
+                                                : () {};
+                                          },
+                                          isLoading:
                                               controller.isLoading.isFalse
-                                                  ? controller.login()
-                                                  : () {};
-                                            },
-                                            isLoading:
-                                                controller.isLoading.isFalse
-                                                    ? false
-                                                    : true,
-                                            text: 'signin_btn'.tr,
-                                            width: size.width,
-                                            height: 58,
-                                          ),
-                                          Positioned(
-                                            right: 0,
-                                            width: 58,
-                                            height: 58,
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    AppColor.primaryBlueColor,
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                              ),
-                                              child: const Icon(
-                                                Icons.arrow_forward_ios,
-                                                size: 27,
-                                                color: Colors.white,
-                                              ),
+                                                  ? false
+                                                  : true,
+                                          text: 'signin_btn'.tr,
+                                          width: size.width,
+                                          height: 58,
+                                        ),
+                                        Positioned(
+                                          right: 0,
+                                          width: 58,
+                                          height: 58,
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: AppColor.primaryBlueColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                            ),
+                                            child: const Icon(
+                                              Icons.arrow_forward_ios,
+                                              size: 27,
+                                              color: Colors.white,
                                             ),
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                   const SizedBox(height: 18),

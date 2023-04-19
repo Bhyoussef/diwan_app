@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:diwanapp/app/controllers/OffersController.dart';
 import 'package:diwanapp/app/theme/app_colors.dart';
 import 'package:diwanapp/app/views/services/pages/offers/OfferDetails.dart';
@@ -71,6 +73,12 @@ class _OffersScreenState extends State<OffersScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+                                    offer.logoContent == null
+                                        ? Container()
+                                        : Image.memory(
+                                            Base64Decoder()
+                                                .convert(offer.logoContent),
+                                          ),
                                     Text(
                                       offer.title,
                                       style: const TextStyle(

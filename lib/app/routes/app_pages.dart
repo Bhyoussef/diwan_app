@@ -8,6 +8,7 @@ import 'package:diwanapp/app/views/services/pages/certificates/HRCertificateScre
 import 'package:diwanapp/app/views/services/pages/courses/CourseDetailsScreen.dart';
 import 'package:diwanapp/app/views/services/pages/courses/CoursesScreen.dart';
 import 'package:diwanapp/app/views/services/pages/leave_requests/LeaveRequest.dart';
+import 'package:diwanapp/app/views/services/pages/leave_requests/LeaveRequestList.dart';
 import 'package:diwanapp/app/views/services/pages/loan_requests/LoanRequestScreen.dart';
 import 'package:diwanapp/app/views/services/pages/offers/OfferDetails.dart';
 import 'package:diwanapp/app/views/services/pages/offers/OffersScreen.dart';
@@ -43,6 +44,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.loanRequestScreen,
       page: () => const LoanRequestScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.leaveRequestListScreen,
+      page: () => const LeaveRequestListScreen(),
     ),
     GetPage(
       name: AppRoutes.leaveRequestScreen,

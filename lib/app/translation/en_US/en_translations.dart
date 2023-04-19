@@ -19,8 +19,9 @@ final Map<String, String> en = {
   //Services
   'contacts_directory': 'Contacts directory',
   'courses': 'Courses',
+  'course_details': 'Coures details',
   'offers': 'Offers',
-  'offer details': 'Offer details',
+  'offer_details': 'Offer details',
   'attendance': 'Attendance',
   'service_request': 'Service request',
   'certificates': 'Certificates',
@@ -28,6 +29,7 @@ final Map<String, String> en = {
   'salary_certificate': 'Salary certificate',
   'pay_slip': 'Pay Slip',
   'leave_request': 'Leave request',
+  'vacations': 'Vacations',
   'school_allowance': 'School allowance',
   'loan_request': 'Loan request',
 

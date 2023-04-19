@@ -76,7 +76,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Easy Wash',
+      title: 'Diwan',
       theme: appThemeData(context),
       translationsKeys: AppTranslation.translations,
       locale: language == 'ar'

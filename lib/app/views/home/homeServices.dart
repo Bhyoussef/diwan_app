@@ -32,7 +32,7 @@ List<HomeService> homeServices(BuildContext context, {List<int>? items}) {
     HomeService(
       title: 'leave_request'.tr,
       picPath: Assets.attendanceIcon,
-      namedRoute: AppRoutes.leaveRequestScreen,
+      namedRoute: AppRoutes.leaveRequestListScreen,
     ),
 
     ///4
@@ -41,13 +41,6 @@ List<HomeService> homeServices(BuildContext context, {List<int>? items}) {
       picPath: Assets.certificateIcon,
       namedRoute: AppRoutes.certificateScreen,
     ),
-
-    ///5
-    // HomeService(
-    //   title: 'service_request'.tr,
-    //   picPath: Assets.services,
-    //   namedRoute: AppRoutes.attendanceScreen,
-    // ),
 
     ///6
     HomeService(
@@ -69,13 +62,6 @@ List<HomeService> homeServices(BuildContext context, {List<int>? items}) {
       picPath: Assets.coursesIcon,
       namedRoute: AppRoutes.coursesScreen,
     ),
-
-    ///9
-    // HomeService(
-    //   title: 'contacts_directory'.tr,
-    //   picPath: Assets.contactDirectoryIcon,
-    //   namedRoute: AppRoutes.contactDirectoryScreen,
-    // ),
   ];
 
   if (items != null) {

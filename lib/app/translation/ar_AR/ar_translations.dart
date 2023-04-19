@@ -19,8 +19,9 @@ final Map<String, String> ar = {
   //Services
   'contacts_directory': 'دليل جهات الاتصال',
   'courses': 'الدورات',
+  'course_details': 'تفاصيل الدورة',
   'offers': 'العروض',
-  'offer details': 'تفاصيل العرض',
+  'offer_details': 'تفاصيل العرض',
   'attendance': 'الحضور',
   'service_request': 'طلب خدمة',
   'certificates': 'الشهائد',
@@ -28,6 +29,7 @@ final Map<String, String> ar = {
   'salary_certificates': 'شهادات الراتب',
   'pay_slip': 'قسيمة الراتب',
   'leave_request': 'طلب إجازة',
+  'vacations': 'الإجازات',
   'school_allowance': 'بدل المدرسة',
   'loan_request': 'طلب قرض',
 

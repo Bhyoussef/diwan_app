@@ -16,7 +16,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'course details'.tr,
+          'course_details'.tr,
           style: const TextStyle(
             fontWeight: FontWeight.w200,
             fontSize: 18,

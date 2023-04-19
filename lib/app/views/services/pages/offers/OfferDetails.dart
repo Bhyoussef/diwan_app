@@ -27,7 +27,7 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'offer details'.tr,
+          'offer_details'.tr,
           style: const TextStyle(
             fontWeight: FontWeight.w200,
             fontSize: 18,
