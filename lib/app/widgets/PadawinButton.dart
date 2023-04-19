@@ -7,12 +7,14 @@ enum ButtonType { white, red, blue }
 class PadiwanButton extends StatelessWidget {
   final Function onPressed;
   final double? width;
+  final bool? isLoading;
   final double? height;
   final String? text;
   final ButtonType? buttonType;
   final TextStyle? textStyle;
   const PadiwanButton(
       {required this.onPressed,
+      this.isLoading = false,
       this.width = 125,
       this.height = 50,
       required this.text,
@@ -32,17 +34,26 @@ class PadiwanButton extends StatelessWidget {
             : buttonType == ButtonType.blue
                 ? PadiwanButtonTheme.blueButtonTheme.style
                 : PadiwanButtonTheme.whiteButtonTheme.style,
-        child: Text(
-          text!,
-          textAlign: TextAlign.center,
-          style: textStyle ??
-              TextStyle(
-                // height: text!.contains('\n') ? 1.0 : null,
-                color: buttonType == ButtonType.white
-                    ? AppColor.primaryBlueColor
-                    : Colors.white,
+        child: isLoading!
+            ? const SizedBox(
+                width: 25,
+                height: 25,
+                child: CircularProgressIndicator(
+                  backgroundColor: Colors.white,
+                  strokeWidth: 2,
+                ),
+              )
+            : Text(
+                text!,
+                textAlign: TextAlign.center,
+                style: textStyle ??
+                    TextStyle(
+                      // height: text!.contains('\n') ? 1.0 : null,
+                      color: buttonType == ButtonType.white
+                          ? AppColor.primaryBlueColor
+                          : Colors.white,
+                    ),
               ),
-        ),
       ),
     );
   }
