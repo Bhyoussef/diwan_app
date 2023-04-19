@@ -1,5 +1,6 @@
 import 'package:diwanapp/app/constants/assets_constants.dart';
 import 'package:diwanapp/app/constants/constants.dart';
+import 'package:diwanapp/app/helpers/shared_preferences.dart';
 import 'package:diwanapp/app/routes/app_pages.dart';
 import 'package:diwanapp/app/theme/app_colors.dart';
 import 'package:diwanapp/app/widgets/SafeAreaRedTopWhiteBody.dart';
@@ -103,6 +104,7 @@ List<DrawerItem> drawerItems(BuildContext context, int index) {
       picPath: Assets.logout,
       onPressed: () {
         _closeDrawer(context);
+        SharedData.clearStorage();
         Navigator.of(context).pushReplacementNamed(
           AppRoutes.loginScreen,
         );

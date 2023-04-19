@@ -22,9 +22,19 @@ class SignInController extends GetxController {
 
   String? validatePassword(String value) {
     if (GetUtils.isNull(value)) {
-      return 'Please enter your password'.tr;
+      return 'password_required'.tr;
     } else if (GetUtils.isLengthLessOrEqual(value, 6)) {
-      return 'Password is too short'.tr;
+      return 'password_length'.tr;
+    } else {
+      return null;
+    }
+  }
+
+  String? validateEmail(String value) {
+    if (value == '') {
+      return 'email_required'.tr;
+    } else if (!GetUtils.isEmail(value)) {
+      return 'is_email'.tr;
     } else {
       return null;
     }
@@ -47,10 +57,10 @@ class SignInController extends GetxController {
           Get.offAllNamed(AppRoutes.homeScreen);
         } else {
           Get.snackbar(
-            'Login Error'.tr,
-            'Invalid phone or password'.tr,
+            'login_error'.tr,
+            'invalid_phone_or_password'.tr,
             colorText: Colors.white,
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.black,
           );
         }
         isLoading(false);

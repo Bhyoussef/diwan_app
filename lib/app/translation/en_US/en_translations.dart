@@ -2,6 +2,7 @@ final Map<String, String> en = {
   'signin': 'SIGN IN',
   'signin_tag': 'Please login to continue using our app',
   'qid': 'QID',
+  'email': 'Email',
   'password': 'Password',
   'signin_btn': 'Login',
 
@@ -29,4 +30,13 @@ final Map<String, String> en = {
   'leave_request': 'Leave request',
   'school_allowance': 'School allowance',
   'loan_request': 'Loan request',
+
+  //Validation
+  'login_error': 'Error',
+  'invalid_phone_or_password':
+      'Please make sure you enter the correct email and password',
+  'email_required': 'Email is required',
+  'is_email': 'Please enter a valid email address',
+  'password_required': 'Password is required',
+  'password_length': 'Passwords must be at least 6 characters'
 };
