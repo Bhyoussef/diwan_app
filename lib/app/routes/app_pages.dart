@@ -3,6 +3,7 @@ import 'package:diwanapp/app/views/language/LanguageScreen.dart';
 import 'package:diwanapp/app/views/login/LoginScreen.dart';
 import 'package:diwanapp/app/views/services/ServicesScreen.dart';
 import 'package:diwanapp/app/views/services/pages/advance_requests/AdvanceRequestScreen.dart';
+import 'package:diwanapp/app/views/services/pages/attendance/AttendanceScreen.dart';
 import 'package:diwanapp/app/views/services/pages/certificates/CertificateScreen.dart';
 import 'package:diwanapp/app/views/services/pages/certificates/HRCertificateScreen.dart';
 import 'package:diwanapp/app/views/services/pages/courses/CourseDetailsScreen.dart';
@@ -76,6 +77,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.offersScreen,
       page: () => const OffersScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.attendanceScreen,
+      page: () => const AttendanceScreen(),
     ),
   ];
 }
