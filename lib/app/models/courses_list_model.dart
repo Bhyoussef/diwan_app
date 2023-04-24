@@ -1,10 +1,8 @@
 import 'dart:convert';
 
-List<CoursesList> coursesListFromJson(String str) => List<CoursesList>.from(
-    json.decode(str).map((x) => CoursesList.fromJson(x)));
+List<CoursesList> coursesListFromJson(String str) => List<CoursesList>.from(json.decode(str).map((x) => CoursesList.fromJson(x)));
 
-String coursesListToJson(List<CoursesList> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String coursesListToJson(List<CoursesList> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class CoursesList {
   CoursesList({
@@ -48,36 +46,36 @@ class CoursesList {
   dynamic validations;
 
   factory CoursesList.fromJson(Map<String, dynamic> json) => CoursesList(
-        employeeId: json["EmployeeId"],
-        courseMasterId: json["CourseMasterId"],
-        startDate: DateTime.parse(json["StartDate"]),
-        endDate: DateTime.parse(json["EndDate"]),
-        status: json["Status"],
-        currentDate: DateTime.parse(json["CurrentDate"]),
-        code: json["Code"],
+        employeeId: json["employeeId"],
+        courseMasterId: json["courseMasterId"],
+        startDate: DateTime.parse(json["startDate"]),
+        endDate: DateTime.parse(json["endDate"]),
+        status: json["status"],
+        currentDate: DateTime.parse(json["currentDate"]),
+        code: json["code"],
         title: json["Title"],
         description: json["Description"],
         lastDateToApply: json["LastDateToApply"],
-        id: json["Id"],
-        createdBy: json["CreatedBy"],
-        createdDate: DateTime.parse(json["CreatedDate"]),
+        id: json["id"],
+        createdBy: json["createdBy"],
+        createdDate: DateTime.parse(json["createdDate"]),
         modifiedBy: json["ModifiedBy"],
         modifiedDate: json["ModifiedDate"] == null
             ? null
             : DateTime.parse(json["ModifiedDate"]),
-        active: json["Active"],
-        action: json["Action"],
+        active: json["active"],
+        action: json["action"],
         validations: json["Validations"],
       );
 
   Map<String, dynamic> toJson() => {
-        "EmployeeId": employeeId,
-        "CourseMasterId": courseMasterId,
-        "StartDate": startDate.toIso8601String(),
-        "EndDate": endDate.toIso8601String(),
-        "Status": status,
+        "employeeId": employeeId,
+        "courseMasterId": courseMasterId,
+        "startDate": startDate.toIso8601String(),
+        "endDate": endDate.toIso8601String(),
+        "status": status,
         "CurrentDate": currentDate.toIso8601String(),
-        "Code": code,
+        "code": code,
         "Title": title,
         "Description": description,
         "LastDateToApply": lastDateToApply,

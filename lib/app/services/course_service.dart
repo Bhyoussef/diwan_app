@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:diwanapp/app/models/courses_list_model.dart';
 import 'package:diwanapp/app/services/base_client.dart';
 import 'package:get/get.dart';
@@ -11,7 +13,10 @@ class CouresService extends GetxService {
       );
 
       if (response.statusCode == 200) {
-        return coursesListFromJson(response.data);
+        final responseData = response.data as List<dynamic>;
+        List<CoursesList> coursesList = [];
+        coursesList = responseData.map((json) => CoursesList.fromJson(json)).toList();
+        return coursesList;
       } else {
         return null;
       }
