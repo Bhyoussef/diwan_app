@@ -1,4 +1,5 @@
 import 'package:diwanapp/app/helpers/shared_preferences.dart';
+import 'package:diwanapp/app/helpers/shared_values.dart';
 import 'package:diwanapp/app/models/employee_attendance_model.dart';
 import 'package:diwanapp/app/services/employee_attendance_service.dart';
 
@@ -18,16 +19,14 @@ class EmployeeAttendanceController extends GetxController {
     var month = date.month;
     isLoading(true);
 
-    SharedData.getFromStorage('EMPLOYEE_ID', 'string').then((id) async {
-      var response = await _employeeAttendanceService.getEmployeeAttendanceList(
-          year, month, id);
+    var response = await _employeeAttendanceService.getEmployeeAttendanceList(
+        year, month, userId.$);
 
-      if (response != null) {
-        for (var attendance in response) {
-          employeeAttendanceList.add(attendance);
-        }
+    if (response != null) {
+      for (var attendance in response) {
+        employeeAttendanceList.add(attendance);
       }
-      isLoading(false);
-    });
+    }
+    isLoading(false);
   }
 }

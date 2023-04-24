@@ -60,10 +60,10 @@ class CertificateService extends GetxService {
       );
 
       if (response.statusCode == 200) {
-
         final responseData = response.data as List<dynamic>;
         List<HrTypeList> hrTypeList = [];
-        hrTypeList = responseData.map((json) => HrTypeList.fromJson(json)).toList();
+        hrTypeList =
+            responseData.map((json) => HrTypeList.fromJson(json)).toList();
 
         return hrTypeList;
       } else {

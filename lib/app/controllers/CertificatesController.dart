@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:diwanapp/app/helpers/shared_preferences.dart';
+import 'package:diwanapp/app/helpers/shared_values.dart';
 import 'package:diwanapp/app/models/hr_type_list.dart';
 import 'package:diwanapp/app/services/certificate_service.dart';
 import 'package:flutter/material.dart';
@@ -12,22 +13,12 @@ import 'package:path_provider/path_provider.dart';
 class CertificatesController extends GetxController {
   final CertificateService _certificateService = CertificateService();
 
-  String userId = '';
   late List<HrTypeList> typesList = <HrTypeList>[].obs;
 
   var isLoadingPayslip = false.obs;
   var isLoadingSalaryCertificate = false.obs;
   var isLoadingTypes = false.obs;
   var isLoadingHrCertificate = false.obs;
-
-  @override
-  void onInit() {
-    SharedData.getFromStorage('EMPLOYEE_ID', 'string').then((id) async {
-      userId = id;
-    });
-
-    super.onInit();
-  }
 
   Future loadPaySlipPdf(date) async {
     isLoadingPayslip(true);
@@ -88,7 +79,7 @@ class CertificatesController extends GetxController {
     typesList.clear();
     update();
 
-    var response = await _certificateService.getHryCertificateTypes(userId);
+    var response = await _certificateService.getHryCertificateTypes(userId.$);
 
     if (response != null) {
       for (var type in response) {
@@ -113,13 +104,10 @@ class CertificatesController extends GetxController {
       return _storeFile('HrCertificate.pdf', fileBlob);
     } else {
       isLoadingHrCertificate(false);
-      Get.snackbar(
-        'Error'.tr,
-        'No Hr $id Certificate ...'.tr,
-        colorText: Colors.white,
-        backgroundColor: Colors.amber,
-        snackPosition: SnackPosition.BOTTOM
-      );
+      Get.snackbar('Error'.tr, 'No Hr $id Certificate ...'.tr,
+          colorText: Colors.white,
+          backgroundColor: Colors.amber,
+          snackPosition: SnackPosition.BOTTOM);
       return null;
     }
   }

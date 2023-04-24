@@ -52,41 +52,41 @@ class _HRCertificateScreenState extends State<HRCertificateScreen> {
                 ? Container(
                     margin: const EdgeInsets.all(10),
                     child: ListView.separated(
-                      itemCount: controller.typesList.length,
-                      itemBuilder: (listContext, index) {
-                        var type = controller.typesList[index];
-                        return SizedBox(
-                          width: double.infinity,
-                          height: 50.0,
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                AppColor.primaryRedColor,
+                        itemCount: controller.typesList.length,
+                        itemBuilder: (listContext, index) {
+                          var type = controller.typesList[index];
+                          return SizedBox(
+                            width: double.infinity,
+                            height: 50.0,
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                  AppColor.primaryRedColor,
+                                ),
                               ),
-                            ),
-                            onPressed: () async {
-                              final file = await controller.loadHrCertificatePdf(type.hrCertificateId);
-                              if (file != null) {
-                                openPdf(context, file);
-                              }
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                type.documentType.toString(),
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w300,
+                              onPressed: () async {
+                                final file = await controller
+                                    .loadHrCertificatePdf(type.hrCertificateId);
+                                if (file != null) {
+                                  openPdf(context, file);
+                                }
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  type.certificateNameEN ?? '',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        );
-                      },
-                      separatorBuilder: (context, index) =>
-                          const SizedBox(height: 10)
-                    )
-                  )
+                          );
+                        },
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(height: 10)))
                 : Center(
                     child: Text('Hr certificates is empty'.tr),
                   ),
@@ -96,9 +96,6 @@ class _HRCertificateScreenState extends State<HRCertificateScreen> {
 }
 
 void openPdf(BuildContext context, File file) {
-  Navigator.of(context).push(
-    MaterialPageRoute(
-      builder: (context) => PdfViewerPage(file: file)
-    )
-  );
+  Navigator.of(context)
+      .push(MaterialPageRoute(builder: (context) => PdfViewerPage(file: file)));
 }

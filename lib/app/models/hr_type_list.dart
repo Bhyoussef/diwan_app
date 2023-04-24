@@ -15,6 +15,7 @@ class HrTypeList {
     required this.certificateNo,
     required this.empNumber,
     required this.empName,
+    required this.certificateNameEN,
     required this.id,
     required this.createdBy,
     required this.createdDate,
@@ -32,6 +33,7 @@ class HrTypeList {
   String certificateNo;
   String empNumber;
   String empName;
+  String certificateNameEN;
   String id;
   String createdBy;
   DateTime createdDate;
@@ -49,6 +51,7 @@ class HrTypeList {
         certificateNo: json["certificateNo"],
         empNumber: json["empNumber"],
         empName: json["empName"],
+        certificateNameEN: json["certificateNameEN"],
         id: json["id"],
         createdBy: json["createdBy"],
         createdDate: DateTime.parse(json["createdDate"]),
@@ -67,6 +70,7 @@ class HrTypeList {
         "certificateNo": certificateNo,
         "empNumber": empNumber,
         "empName": empName,
+        "certificateNameEN": certificateNameEN,
         "id": id,
         "createdBy": createdBy,
         "createdDate": createdDate.toIso8601String(),
