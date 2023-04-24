@@ -65,8 +65,7 @@ class _HRCertificateScreenState extends State<HRCertificateScreen> {
                               ),
                             ),
                             onPressed: () async {
-                              final file = await controller
-                                  .loadHrCertificatePdf(type.hrCertificateId);
+                              final file = await controller.loadHrCertificatePdf(type.hrCertificateId);
                               if (file != null) {
                                 openPdf(context, file);
                               }
@@ -85,11 +84,11 @@ class _HRCertificateScreenState extends State<HRCertificateScreen> {
                         );
                       },
                       separatorBuilder: (context, index) =>
-                          const SizedBox(height: 10),
-                    ),
+                          const SizedBox(height: 10)
+                    )
                   )
                 : Center(
-                    child: Text('Notifications list is empty'.tr),
+                    child: Text('Hr certificates is empty'.tr),
                   ),
       ),
     );
@@ -99,7 +98,7 @@ class _HRCertificateScreenState extends State<HRCertificateScreen> {
 void openPdf(BuildContext context, File file) {
   Navigator.of(context).push(
     MaterialPageRoute(
-      builder: (context) => PdfViewerPage(file: file),
-    ),
+      builder: (context) => PdfViewerPage(file: file)
+    )
   );
 }

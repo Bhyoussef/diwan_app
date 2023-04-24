@@ -118,7 +118,7 @@ class CertificatesController extends GetxController {
         'No Hr $id Certificate ...'.tr,
         colorText: Colors.white,
         backgroundColor: Colors.amber,
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.BOTTOM
       );
       return null;
     }

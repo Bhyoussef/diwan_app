@@ -29,6 +29,7 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
       ),
       body: PDFView(
         filePath: widget.file.path,
+
       ),
     );
   }
