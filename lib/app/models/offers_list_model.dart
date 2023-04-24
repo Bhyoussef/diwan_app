@@ -32,7 +32,7 @@ class OffersList {
   DateTime validFrom;
   DateTime validTo;
   String externalUrl;
-  dynamic logoContent;
+  String? logoContent;
   String? categoryCode;
   bool inActive;
   bool activeList;
@@ -46,46 +46,44 @@ class OffersList {
   dynamic validations;
 
   factory OffersList.fromJson(Map<String, dynamic> json) => OffersList(
-        code: json["Code"],
-        title: json["Title"],
-        description: json["Description"],
-        validFrom: DateTime.parse(json["ValidFrom"]),
-        validTo: DateTime.parse(json["ValidTo"]),
-        externalUrl: json["ExternalUrl"],
-        logoContent: json["LogoContent"],
-        categoryCode: json["CategoryCode"],
-        inActive: json["InActive"],
-        activeList: json["ActiveList"],
-        id: json["Id"],
-        createdBy: json["CreatedBy"],
-        createdDate: DateTime.parse(json["CreatedDate"]),
-        modifiedBy: json["ModifiedBy"],
-        modifiedDate: json["ModifiedDate"] == null
-            ? null
-            : DateTime.parse(json["ModifiedDate"]),
-        active: json["Active"],
-        action: json["Action"],
-        validations: json["Validations"],
+        code: json["code"],
+        title: json["title"],
+        description: json["description"],
+        validFrom: DateTime.parse(json["validFrom"]),
+        validTo: DateTime.parse(json["validTo"]),
+        externalUrl: json["externalUrl"],
+        logoContent: json["logoContent"],
+        categoryCode: json["categoryCode"],
+        inActive: json["inActive"],
+        activeList: json["activeList"],
+        id: json["id"],
+        createdBy: json["createdBy"],
+        createdDate: DateTime.parse(json["createdDate"]),
+        modifiedBy: json["modifiedBy"],
+        modifiedDate: json["modifiedDate"] == null ? null : DateTime.parse(json["modifiedDate"]),
+        active: json["active"],
+        action: json["action"],
+        validations: json["validations"],
       );
 
   Map<String, dynamic> toJson() => {
-        "Code": code,
-        "Title": title,
-        "Description": description,
-        "ValidFrom": validFrom.toIso8601String(),
-        "ValidTo": validTo.toIso8601String(),
-        "ExternalUrl": externalUrl,
-        "LogoContent": logoContent,
-        "CategoryCode": categoryCode,
-        "InActive": inActive,
-        "ActiveList": activeList,
-        "Id": id,
-        "CreatedBy": createdBy,
-        "CreatedDate": createdDate.toIso8601String(),
-        "ModifiedBy": modifiedBy,
-        "ModifiedDate": modifiedDate?.toIso8601String(),
-        "Active": active,
-        "Action": action,
-        "Validations": validations,
+        "code": code,
+        "title": title,
+        "description": description,
+        "validFrom": validFrom.toIso8601String(),
+        "validTo": validTo.toIso8601String(),
+        "externalUrl": externalUrl,
+        "logoContent": logoContent,
+        "categoryCode": categoryCode,
+        "inActive": inActive,
+        "activeList": activeList,
+        "id": id,
+        "createdBy": createdBy,
+        "createdDate": createdDate.toIso8601String(),
+        "modifiedBy": modifiedBy,
+        "modifiedDate": modifiedDate?.toIso8601String(),
+        "active": active,
+        "action": action,
+        "validations": validations,
       };
 }

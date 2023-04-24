@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:diwanapp/app/controllers/OffersController.dart';
 import 'package:diwanapp/app/theme/app_colors.dart';
@@ -76,8 +77,7 @@ class _OffersScreenState extends State<OffersScreen> {
                                     offer.logoContent == null
                                         ? Container()
                                         : Image.memory(
-                                            Base64Decoder()
-                                                .convert(offer.logoContent),
+                                            const Base64Decoder().convert(offer.logoContent!),
                                           ),
                                     Text(
                                       offer.title,
