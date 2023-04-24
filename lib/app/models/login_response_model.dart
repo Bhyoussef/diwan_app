@@ -1,7 +1,11 @@
+// To parse this JSON data, do
+//
+//     final loginModel = loginModelFromJson(jsonString);
+
+import 'package:meta/meta.dart';
 import 'dart:convert';
 
-LoginModel loginModelFromJson(String str) =>
-    LoginModel.fromJson(json.decode(str));
+LoginModel loginModelFromJson(String str) => LoginModel.fromJson(json.decode(str));
 
 String loginModelToJson(LoginModel data) => json.encode(data.toJson());
 
@@ -15,6 +19,7 @@ class LoginModel {
     required this.language,
     required this.isQatari,
     required this.isManager,
+    required this.photoUrl,
     required this.userRoles,
   });
 
@@ -26,32 +31,34 @@ class LoginModel {
   String language;
   bool isQatari;
   bool isManager;
+  String photoUrl;
   List<UserRole> userRoles;
 
   factory LoginModel.fromJson(Map<String, dynamic> json) => LoginModel(
-        id: json["Id"],
-        firstName: json["FirstName"],
-        lastName: json["LastName"],
-        token: json["Token"],
-        employeeId: json["EmployeeId"],
-        language: json["Language"],
-        isQatari: json["IsQatari"],
-        isManager: json["IsManager"],
-        userRoles: List<UserRole>.from(
-            json["UserRoles"].map((x) => UserRole.fromJson(x))),
-      );
+    id: json["id"],
+    firstName: json["firstName"],
+    lastName: json["lastName"],
+    token: json["token"],
+    employeeId: json["employeeId"],
+    language: json["language"],
+    isQatari: json["isQatari"],
+    isManager: json["isManager"],
+    photoUrl: json["photoURL"],
+    userRoles: List<UserRole>.from(json["userRoles"].map((x) => UserRole.fromJson(x))),
+  );
 
   Map<String, dynamic> toJson() => {
-        "Id": id,
-        "FirstName": firstName,
-        "LastName": lastName,
-        "Token": token,
-        "EmployeeId": employeeId,
-        "Language": language,
-        "IsQatari": isQatari,
-        "IsManager": isManager,
-        "UserRoles": List<dynamic>.from(userRoles.map((x) => x.toJson())),
-      };
+    "id": id,
+    "firstName": firstName,
+    "lastName": lastName,
+    "token": token,
+    "employeeId": employeeId,
+    "language": language,
+    "isQatari": isQatari,
+    "isManager": isManager,
+    "photoURL": photoUrl,
+    "userRoles": List<dynamic>.from(userRoles.map((x) => x.toJson())),
+  };
 }
 
 class UserRole {
@@ -66,58 +73,34 @@ class UserRole {
     required this.allowApprove,
   });
 
-  RoleCode roleCode;
-  RoleName roleName;
+  String roleCode;
+  String roleName;
   String accessCode;
   String accessName;
-  Allow allowWrite;
-  Allow allowEdit;
-  Allow allowDelete;
-  Allow allowApprove;
+  String allowWrite;
+  String allowEdit;
+  String allowDelete;
+  String allowApprove;
 
   factory UserRole.fromJson(Map<String, dynamic> json) => UserRole(
-        roleCode: roleCodeValues.map[json["RoleCode"]]!,
-        roleName: roleNameValues.map[json["RoleName"]]!,
-        accessCode: json["AccessCode"],
-        accessName: json["AccessName"],
-        allowWrite: allowValues.map[json["AllowWrite"]]!,
-        allowEdit: allowValues.map[json["AllowEdit"]]!,
-        allowDelete: allowValues.map[json["AllowDelete"]]!,
-        allowApprove: allowValues.map[json["AllowApprove"]]!,
-      );
+    roleCode: json["roleCode"],
+    roleName: json["roleName"],
+    accessCode: json["accessCode"],
+    accessName: json["accessName"],
+    allowWrite: json["allowWrite"],
+    allowEdit: json["allowEdit"],
+    allowDelete: json["allowDelete"],
+    allowApprove: json["allowApprove"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "RoleCode": roleCodeValues.reverse[roleCode],
-        "RoleName": roleNameValues.reverse[roleName],
-        "AccessCode": accessCode,
-        "AccessName": accessName,
-        "AllowWrite": allowValues.reverse[allowWrite],
-        "AllowEdit": allowValues.reverse[allowEdit],
-        "AllowDelete": allowValues.reverse[allowDelete],
-        "AllowApprove": allowValues.reverse[allowApprove],
-      };
-}
-
-enum Allow { Y }
-
-final allowValues = EnumValues({"Y": Allow.Y});
-
-enum RoleCode { SUPERADMIN }
-
-final roleCodeValues = EnumValues({"SUPERADMIN": RoleCode.SUPERADMIN});
-
-enum RoleName { SUPER_ADMIN }
-
-final roleNameValues = EnumValues({"Super Admin": RoleName.SUPER_ADMIN});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
-  }
+    "roleCode": roleCode,
+    "roleName": roleName,
+    "accessCode": accessCode,
+    "accessName": accessName,
+    "allowWrite": allowWrite,
+    "allowEdit": allowEdit,
+    "allowDelete": allowDelete,
+    "allowApprove": allowApprove,
+  };
 }

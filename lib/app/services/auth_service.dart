@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:diwanapp/app/helpers/shared_preferences.dart';
 import 'package:diwanapp/app/models/login_response_model.dart';
 import 'package:diwanapp/app/services/base_client.dart';
@@ -14,11 +16,11 @@ class AuthService extends GetxService {
     };
 
     try {
-      Dio.Response response =
-          await dio().post('/mobileservice/userLogin', data: credentials);
+      Dio.Response response = await dio().post('/mobileservice/userLogin', data: credentials);
 
+      print(response.data);
       if (response.statusCode == 200) {
-        final user = loginModelFromJson(response.data);
+        final LoginModel user = LoginModel.fromJson(response.data);
         //Save User data to LocalStorage
         SharedData.saveToStorage('USER_TOKEN', user.token, 'string');
         SharedData.saveToStorage('EMPLOYEE_ID', user.employeeId, 'string');
