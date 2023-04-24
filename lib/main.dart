@@ -2,6 +2,7 @@
 
 import 'package:diwanapp/app/env/environnments.dart';
 import 'package:diwanapp/app/helpers/shared_preferences.dart';
+import 'package:diwanapp/app/helpers/shared_values.dart';
 import 'package:diwanapp/app/routes/app_pages.dart';
 import 'package:diwanapp/app/theme/app_theme.dart';
 import 'package:diwanapp/app/translation/app_translations.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:month_year_picker/month_year_picker.dart';
+import 'package:shared_value/shared_value.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -74,24 +76,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Diwan',
-      theme: appThemeData(context),
-      translationsKeys: AppTranslation.translations,
-      locale: language == 'ar'
-          ? const Locale('ar', 'AR')
-          : const Locale('en', 'US'),
-      fallbackLocale: const Locale('en', 'US'),
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        MonthYearPickerLocalizations.delegate
-      ],
-      supportedLocales: const [Locale('en'), Locale('ar')],
-      initialRoute: route,
-      getPages: AppPages.pages,
+    return SharedValue.wrapApp(
+      GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Diwan',
+        theme: appThemeData(context),
+        translationsKeys: AppTranslation.translations,
+        locale: language == 'ar'
+            ? const Locale('ar', 'AR')
+            : const Locale('en', 'US'),
+        fallbackLocale: const Locale('en', 'US'),
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          MonthYearPickerLocalizations.delegate
+        ],
+        supportedLocales: const [Locale('en'), Locale('ar')],
+        initialRoute: route,
+        getPages: AppPages.pages,
+      ),
     );
   }
 }
