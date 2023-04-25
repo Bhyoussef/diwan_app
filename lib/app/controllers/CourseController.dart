@@ -1,5 +1,4 @@
 import 'package:diwanapp/app/helpers/shared_preferences.dart';
-import 'package:diwanapp/app/helpers/shared_values.dart';
 import 'package:diwanapp/app/models/courses_list_model.dart';
 import 'package:diwanapp/app/services/course_service.dart';
 import 'package:get/get.dart';
@@ -14,15 +13,18 @@ class CourseController extends GetxController {
   var isLoadingDetails = false.obs;
 
   Future loadAllCourses() async {
+    coursesList.clear();
     isLoading(true);
-    var response = await _coursesService.getCoursesList(userId.$);
+    SharedData.getFromStorage('EMPLOYEE_ID', 'string').then((id) async {
+      var response = await _coursesService.getCoursesList(id);
 
-    if (response != null) {
-      for (var course in response) {
-        coursesList.add(course);
+      if (response != null) {
+        for (var course in response) {
+          coursesList.add(course);
+        }
       }
-    }
-    isLoading(false);
+      isLoading(false);
+    });
   }
 
   Future loadCourseDetails(id) async {

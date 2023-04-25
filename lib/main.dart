@@ -2,7 +2,6 @@
 
 import 'package:diwanapp/app/env/environnments.dart';
 import 'package:diwanapp/app/helpers/shared_preferences.dart';
-import 'package:diwanapp/app/helpers/shared_values.dart';
 import 'package:diwanapp/app/routes/app_pages.dart';
 import 'package:diwanapp/app/theme/app_theme.dart';
 import 'package:diwanapp/app/translation/app_translations.dart';
@@ -22,6 +21,7 @@ void main() async {
   SharedData.getFromStorage('EMPLOYEE_ID', 'string').then((id) async {
     print(id);
   });
+
   getRoutes();
 }
 
@@ -76,26 +76,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SharedValue.wrapApp(
-      GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Diwan',
-        theme: appThemeData(context),
-        translationsKeys: AppTranslation.translations,
-        locale: language == 'ar'
-            ? const Locale('ar', 'AR')
-            : const Locale('en', 'US'),
-        fallbackLocale: const Locale('en', 'US'),
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          MonthYearPickerLocalizations.delegate
-        ],
-        supportedLocales: const [Locale('en'), Locale('ar')],
-        initialRoute: route,
-        getPages: AppPages.pages,
-      ),
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Diwan',
+      theme: appThemeData(context),
+      translationsKeys: AppTranslation.translations,
+      locale: language == 'ar'
+          ? const Locale('ar', 'AR')
+          : const Locale('en', 'US'),
+      fallbackLocale: const Locale('en', 'US'),
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        MonthYearPickerLocalizations.delegate
+      ],
+      supportedLocales: const [Locale('en'), Locale('ar')],
+      initialRoute: route,
+      getPages: AppPages.pages,
     );
   }
 }

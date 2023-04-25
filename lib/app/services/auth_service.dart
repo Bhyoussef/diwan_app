@@ -1,5 +1,4 @@
 import 'package:diwanapp/app/helpers/shared_preferences.dart';
-import 'package:diwanapp/app/helpers/shared_values.dart';
 import 'package:diwanapp/app/models/login_response_model.dart';
 import 'package:diwanapp/app/services/base_client.dart';
 import 'package:get/get.dart';
@@ -19,12 +18,12 @@ class AuthService extends GetxService {
           await dio().post('/mobileservice/userLogin', data: credentials);
       if (response.statusCode == 200) {
         final LoginModel user = LoginModel.fromJson(response.data);
+
         SharedData.saveToStorage('USER_TOKEN', user.token, 'string');
-        isLoggedIn.$ = true;
-        userId.$ = user.employeeId;
-        accessToken.$ = user.token;
-        isQatari.$ = user.isQatari;
-        isManager.$ = user.isManager;
+        SharedData.saveToStorage('EMPLOYEE_ID', user.employeeId, 'string');
+        SharedData.saveToStorage('CONNECTED', true, 'bool');
+        SharedData.saveToStorage('IS_QATARI', user.isQatari, 'bool');
+        SharedData.saveToStorage('IS_MANAGER', user.isManager, 'bool');
         return true;
       } else {
         return false;

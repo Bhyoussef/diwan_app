@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:diwanapp/app/helpers/shared_preferences.dart';
-import 'package:diwanapp/app/helpers/shared_values.dart';
 import 'package:diwanapp/app/models/hr_type_list.dart';
 import 'package:diwanapp/app/services/certificate_service.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +19,17 @@ class CertificatesController extends GetxController {
   var isLoadingTypes = false.obs;
   var isLoadingHrCertificate = false.obs;
 
+  String userId = '';
+
+  @override
+  void onInit() {
+    SharedData.getFromStorage('EMPLOYEE_ID', 'string').then((id) async {
+      userId = id;
+    });
+
+    super.onInit();
+  }
+
   Future loadPaySlipPdf(date) async {
     isLoadingPayslip(true);
     var year = date.year;
@@ -31,7 +41,6 @@ class CertificatesController extends GetxController {
         fileBlob = data;
       },
     );
-
     if (fileBlob != null) {
       isLoadingPayslip(false);
       return _storeFile('PaySlip.pdf', fileBlob);
@@ -51,6 +60,7 @@ class CertificatesController extends GetxController {
   Future loadSalaryCertificatePdf() async {
     isLoadingSalaryCertificate(true);
     var fileBlob;
+
     await _certificateService.getSalaryCertificate(userId).then(
       (data) {
         fileBlob = data;
@@ -79,8 +89,7 @@ class CertificatesController extends GetxController {
     typesList.clear();
     update();
 
-    var response = await _certificateService.getHryCertificateTypes(userId.$);
-
+    var response = await _certificateService.getHryCertificateTypes(userId);
     if (response != null) {
       for (var type in response) {
         typesList.add(type);
