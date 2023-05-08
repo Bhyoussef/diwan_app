@@ -1,4 +1,5 @@
 import 'package:diwanapp/app/helpers/shared_preferences.dart';
+import 'package:diwanapp/app/models/course_details.dart';
 import 'package:diwanapp/app/models/courses_list_model.dart';
 import 'package:diwanapp/app/services/course_service.dart';
 import 'package:get/get.dart';
@@ -7,7 +8,7 @@ class CourseController extends GetxController {
   final CouresService _coursesService = CouresService();
 
   late List<CoursesList> coursesList = <CoursesList>[].obs;
-  late CoursesList courseDetails;
+  late CoursesDetails courseDetails;
 
   var isLoading = false.obs;
   var isLoadingDetails = false.obs;
@@ -33,7 +34,7 @@ class CourseController extends GetxController {
 
     if (response != null) {
       isLoadingDetails(false);
-      courseDetails = response[0];
+      courseDetails = response;
 
       update();
     }

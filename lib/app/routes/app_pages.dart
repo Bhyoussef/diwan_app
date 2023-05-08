@@ -6,14 +6,14 @@ import 'package:diwanapp/app/views/services/pages/advance_requests/AdvanceReques
 import 'package:diwanapp/app/views/services/pages/attendance/AttendanceScreen.dart';
 import 'package:diwanapp/app/views/services/pages/certificates/CertificateScreen.dart';
 import 'package:diwanapp/app/views/services/pages/certificates/HRCertificateScreen.dart';
-import 'package:diwanapp/app/views/services/pages/courses/CourseDetailsScreen.dart';
 import 'package:diwanapp/app/views/services/pages/courses/CoursesScreen.dart';
 import 'package:diwanapp/app/views/services/pages/leave_requests/LeaveRequest.dart';
 import 'package:diwanapp/app/views/services/pages/leave_requests/LeaveRequestList.dart';
+import 'package:diwanapp/app/views/services/pages/loan_requests/LoanListScreen.dart';
 import 'package:diwanapp/app/views/services/pages/loan_requests/LoanRequestScreen.dart';
-import 'package:diwanapp/app/views/services/pages/offers/OfferDetails.dart';
 import 'package:diwanapp/app/views/services/pages/offers/OffersScreen.dart';
-import 'package:diwanapp/app/views/services/pages/school_allowances/SchoolAllowanceScreen.dart';
+import 'package:diwanapp/app/views/services/pages/school_allowances/SchoolAllowanceRequestScreen.dart';
+import 'package:diwanapp/app/views/services/pages/school_allowances/SchoolAllowancesListScreen.dart';
 import 'package:diwanapp/app/views/splash/SplashScreen.dart';
 import 'package:get/get.dart';
 part 'app_routes.dart';
@@ -47,6 +47,10 @@ class AppPages {
       page: () => const LoanRequestScreen(),
     ),
     GetPage(
+      name: AppRoutes.loanListScreen,
+      page: () => const LoanListScreen(),
+    ),
+    GetPage(
       name: AppRoutes.leaveRequestListScreen,
       page: () => const LeaveRequestListScreen(),
     ),
@@ -64,7 +68,11 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.schoolAllowanceScreen,
-      page: () => const SchoolAllowanceScreen(),
+      page: () => const SchoolAllowanceRequestScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.schoolAllowanceRequestScreen,
+      page: () => const SchoolAllowanceListScreen(),
     ),
     GetPage(
       name: AppRoutes.advanceRequestScreen,

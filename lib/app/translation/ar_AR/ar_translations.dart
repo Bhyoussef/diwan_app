@@ -33,6 +33,15 @@ final Map<String, String> ar = {
   'school_allowance': 'بدل المدرسة',
   'loan_request': 'طلب قرض',
 
+  'leave_master': 'حدد إجازة الاجازة',
+  'start_date': 'تاريخ البدء',
+  'end_date': 'تاريخ الانتهاء',
+  'leave_days': 'عدد ايام الإجازة',
+  'available_leave_days': 'أيام الإجازة القصوى',
+  'day': 'يوم',
+  'remarks': 'ملاحظات',
+  'send_request': 'ارسال الطلب',
+
   //Validation
   'login_error': 'خطاء',
   'invalid_phone_or_password': 'الرجاء التأكد من صحة البيانات المدخله',

@@ -32,6 +32,14 @@ final Map<String, String> en = {
   'vacations': 'Vacations',
   'school_allowance': 'School allowance',
   'loan_request': 'Loan request',
+  'leave_master': 'Select leave master',
+  'start_date': 'Start date',
+  'end_date': 'End date',
+  'leave_days': 'Leave days',
+  'available_leave_days': 'Max leave days',
+  'day': 'day',
+  'remarks': 'Remarks',
+  'send_request': 'Send request',
 
   //Validation
   'login_error': 'Error',

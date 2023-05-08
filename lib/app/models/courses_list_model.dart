@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-List<CoursesList> coursesListFromJson(String str) => List<CoursesList>.from(json.decode(str).map((x) => CoursesList.fromJson(x)));
+List<CoursesList> coursesListFromJson(String str) => List<CoursesList>.from(
+    json.decode(str).map((x) => CoursesList.fromJson(x)));
 
-String coursesListToJson(List<CoursesList> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String coursesListToJson(List<CoursesList> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class CoursesList {
   CoursesList({
@@ -12,10 +14,7 @@ class CoursesList {
     required this.endDate,
     required this.status,
     required this.currentDate,
-    this.code,
-    this.title,
-    this.description,
-    this.lastDateToApply,
+    required this.courseName,
     required this.id,
     required this.createdBy,
     required this.createdDate,
@@ -23,7 +22,6 @@ class CoursesList {
     this.modifiedDate,
     required this.active,
     required this.action,
-    this.validations,
   });
 
   String employeeId;
@@ -32,10 +30,7 @@ class CoursesList {
   DateTime endDate;
   String status;
   DateTime currentDate;
-  dynamic code;
-  dynamic title;
-  dynamic description;
-  dynamic lastDateToApply;
+  String courseName;
   String id;
   String createdBy;
   DateTime createdDate;
@@ -43,7 +38,6 @@ class CoursesList {
   DateTime? modifiedDate;
   String active;
   String action;
-  dynamic validations;
 
   factory CoursesList.fromJson(Map<String, dynamic> json) => CoursesList(
         employeeId: json["employeeId"],
@@ -52,20 +46,16 @@ class CoursesList {
         endDate: DateTime.parse(json["endDate"]),
         status: json["status"],
         currentDate: DateTime.parse(json["currentDate"]),
-        code: json["code"],
-        title: json["Title"],
-        description: json["Description"],
-        lastDateToApply: json["LastDateToApply"],
+        courseName: json["courseName"],
         id: json["id"],
         createdBy: json["createdBy"],
         createdDate: DateTime.parse(json["createdDate"]),
-        modifiedBy: json["ModifiedBy"],
-        modifiedDate: json["ModifiedDate"] == null
+        modifiedBy: json["modifiedBy"],
+        modifiedDate: json["modifiedDate"] == null
             ? null
-            : DateTime.parse(json["ModifiedDate"]),
+            : DateTime.parse(json["modifiedDate"]),
         active: json["active"],
         action: json["action"],
-        validations: json["Validations"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -74,18 +64,14 @@ class CoursesList {
         "startDate": startDate.toIso8601String(),
         "endDate": endDate.toIso8601String(),
         "status": status,
-        "CurrentDate": currentDate.toIso8601String(),
-        "code": code,
-        "Title": title,
-        "Description": description,
-        "LastDateToApply": lastDateToApply,
-        "Id": id,
-        "CreatedBy": createdBy,
-        "CreatedDate": createdDate.toIso8601String(),
-        "ModifiedBy": modifiedBy,
-        "ModifiedDate": modifiedDate?.toIso8601String(),
-        "Active": active,
-        "Action": action,
-        "Validations": validations,
+        "currentDate": currentDate.toIso8601String(),
+        "courseName": courseName,
+        "id": id,
+        "createdBy": createdBy,
+        "createdDate": createdDate.toIso8601String(),
+        "modifiedBy": modifiedBy,
+        "modifiedDate": modifiedDate?.toIso8601String(),
+        "active": active,
+        "action": action,
       };
 }

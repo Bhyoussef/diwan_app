@@ -17,11 +17,14 @@ abstract class AppRoutes {
   static const String certificateScreen = '/certificateScreen';
   static const String hrCertificateScreen = '/hrCertificateScreen';
   static const String schoolAllowanceScreen = '/schoolAllowanceScreen';
+  static const String schoolAllowanceRequestScreen =
+      '/schoolAllowanceRequestScreen';
   static const String advanceRequestScreen = '/advanceRequestScreen';
   static const String attendanceScreen = '/attendanceScreen';
   static const String vacationsScreen = '/vacationsScreen';
   static const String leaveRequestScreen = '/leaveRequestScreen';
   static const String leaveRequestListScreen = '/leaveRequestListScreen';
+  static const String loanListScreen = '/loanListScreen';
   static const String loanRequestScreen = '/loanRequestScreen';
   static const String managementScreen = '/managementScreen';
   static const String profileScreen = '/profileScreen';

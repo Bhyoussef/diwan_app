@@ -1,5 +1,3 @@
-// ignore_for_file: depend_on_referenced_packages
-
 import 'package:diwanapp/app/env/environnments.dart';
 import 'package:diwanapp/app/helpers/shared_preferences.dart';
 import 'package:diwanapp/app/routes/app_pages.dart';
@@ -11,7 +9,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:month_year_picker/month_year_picker.dart';
-import 'package:shared_value/shared_value.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

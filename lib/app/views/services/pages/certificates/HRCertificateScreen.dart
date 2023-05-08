@@ -27,10 +27,6 @@ class _HRCertificateScreenState extends State<HRCertificateScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put<CertificatesController>(
-      CertificatesController(),
-    );
-
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -42,19 +38,19 @@ class _HRCertificateScreenState extends State<HRCertificateScreen> {
         ),
       ),
       body: Obx(
-        () => controller.isLoadingTypes.isTrue
+        () => _controller.isLoadingTypes.isTrue
             ? const Center(
                 child: CircularProgressIndicator(
                   backgroundColor: AppColor.primaryRedColor,
                 ),
               )
-            : controller.typesList.isNotEmpty
+            : _controller.typesList.isNotEmpty
                 ? Container(
                     margin: const EdgeInsets.all(10),
                     child: ListView.separated(
-                        itemCount: controller.typesList.length,
+                        itemCount: _controller.typesList.length,
                         itemBuilder: (listContext, index) {
-                          var type = controller.typesList[index];
+                          var type = _controller.typesList[index];
                           return SizedBox(
                             width: double.infinity,
                             height: 50.0,
@@ -66,7 +62,7 @@ class _HRCertificateScreenState extends State<HRCertificateScreen> {
                                 ),
                               ),
                               onPressed: () async {
-                                final file = await controller
+                                final file = await _controller
                                     .loadHrCertificatePdf(type.hrCertificateId);
                                 if (file != null) {
                                   openPdf(context, file);

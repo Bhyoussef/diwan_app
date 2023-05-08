@@ -121,9 +121,29 @@ _navigateToScreen(BuildContext context, String route) {
   Navigator.of(context).pushNamed(route);
 }
 
-class HomeDrawer extends StatelessWidget {
+class HomeDrawer extends StatefulWidget {
   final int index;
   const HomeDrawer({Key? key, required this.index}) : super(key: key);
+
+  @override
+  State<HomeDrawer> createState() => _HomeDrawerState();
+}
+
+class _HomeDrawerState extends State<HomeDrawer> {
+  String _firstName = '';
+  String _lastName = '';
+  @override
+  void initState() {
+    SharedData.getFromStorage('USER_FIRST_NAME', 'string')
+        .then((firstName) async {
+      _firstName = firstName;
+    });
+    SharedData.getFromStorage('USER_LAST_NAME', 'string')
+        .then((lastName) async {
+      _lastName = lastName;
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -157,14 +177,10 @@ class HomeDrawer extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
                         Text(
-                          'Benbelgacem Hichem',
+                          'name',
                           style: TextStyle(fontSize: 10),
                         ),
                         SizedBox(height: 10),
-                        Text(
-                          'benbelgacemhichem@gmail.com',
-                          style: TextStyle(fontSize: 10),
-                        ),
                       ],
                     ),
                   ],
@@ -173,7 +189,7 @@ class HomeDrawer extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 16, top: 30),
                 child: Column(
-                  children: drawerItems(context, index)
+                  children: drawerItems(context, widget.index)
                       .map(
                         (item) => InkWell(
                           onTap: () {

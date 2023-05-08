@@ -19,6 +19,8 @@ class AuthService extends GetxService {
       if (response.statusCode == 200) {
         final LoginModel user = LoginModel.fromJson(response.data);
 
+        SharedData.saveToStorage('USER_FIRST_NAME', user.firstName, 'string');
+        SharedData.saveToStorage('USER_LAST_NAME', user.lastName, 'string');
         SharedData.saveToStorage('USER_TOKEN', user.token, 'string');
         SharedData.saveToStorage('EMPLOYEE_ID', user.employeeId, 'string');
         SharedData.saveToStorage('CONNECTED', true, 'bool');

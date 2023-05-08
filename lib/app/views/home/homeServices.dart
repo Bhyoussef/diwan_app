@@ -18,14 +18,14 @@ List<HomeService> homeServices(BuildContext context, {List<int>? items}) {
     HomeService(
       title: 'loan_request'.tr,
       picPath: Assets.advanceRequestIcon,
-      namedRoute: AppRoutes.loanRequestScreen,
+      namedRoute: AppRoutes.loanListScreen,
     ),
 
     ///2 Only for Qatari
     HomeService(
       title: 'school_allowance'.tr,
       picPath: Assets.schoolAllowanceIcon,
-      namedRoute: AppRoutes.schoolAllowanceScreen,
+      namedRoute: AppRoutes.schoolAllowanceRequestScreen,
     ),
 
     ///3

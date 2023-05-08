@@ -6,7 +6,7 @@ import 'package:dio/dio.dart' as Dio;
 class EmployeeAttendancesService extends GetxService {
   Future getEmployeeAttendanceList(year, month, userId) async {
     final body = {
-      "employeeID": "16b7f074-f44c-4906-b5b5-44cf6114ed27",
+      "employeeID": userId,
       "month": month,
       "year": year,
     };

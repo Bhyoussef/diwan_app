@@ -1,4 +1,5 @@
 import 'package:diwanapp/app/controllers/AuthController.dart';
+import 'package:diwanapp/app/helpers/keyboard.dart';
 import 'package:diwanapp/app/routes/app_pages.dart';
 import 'package:diwanapp/app/theme/app_colors.dart';
 import 'package:diwanapp/app/widgets/BottomTextureOnly.dart';
@@ -17,187 +18,195 @@ class LoginScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: Container(
-        color: Colors.white,
-        child: Form(
-          key: controller.loginFormKey,
-          child: Column(
-            children: [
-              Expanded(
-                child: BottomTextureOnly(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        TopRedSection(
-                          size: size,
-                        ),
-                        Column(
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 28),
-                              child: Column(
-                                children: [
-                                  Column(
-                                    children: [
-                                      const SizedBox(height: 10),
-                                      Text(
-                                        'signin'.tr,
-                                        style: const TextStyle(
-                                          fontSize: 35,
-                                          fontWeight: FontWeight.w300,
-                                          fontFamily: 'Bahij',
+      body: GestureDetector(
+        onTap: () => KeyboardUtil.hideKeyboard(context),
+        child: Container(
+          color: Colors.white,
+          child: Form(
+            key: controller.loginFormKey,
+            child: Column(
+              children: [
+                Expanded(
+                  child: BottomTextureOnly(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          TopRedSection(
+                            size: size,
+                          ),
+                          Column(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 28),
+                                child: Column(
+                                  children: [
+                                    Column(
+                                      children: [
+                                        const SizedBox(height: 10),
+                                        Text(
+                                          'signin'.tr,
+                                          style: const TextStyle(
+                                            fontSize: 35,
+                                            fontWeight: FontWeight.w300,
+                                            fontFamily: 'Bahij',
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      const SizedBox(height: 3),
-                                      Text(
-                                        'signin_tag'.tr,
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.w300,
-                                          fontFamily: 'Bahij',
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        const SizedBox(height: 3),
+                                        Text(
+                                          'signin_tag'.tr,
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.w300,
+                                            fontFamily: 'Bahij',
+                                          ),
                                         ),
-                                      ),
-                                      const SizedBox(height: 30),
-                                    ],
-                                  ),
-                                  TextFormField(
-                                    controller: controller.qidController,
-                                    cursorHeight: 20,
-                                    cursorWidth: 1.0,
-                                    keyboardType: TextInputType.text,
-                                    cursorColor: AppColor.primaryRedColor,
-                                    onFieldSubmitted: (s) {
-                                      FocusScope.of(context).nextFocus();
-                                    },
-                                    validator: (value) {
-                                      return controller.validateEmail(value!);
-                                    },
-                                    decoration: InputDecoration(
-                                      enabledBorder: textFieldDefaultBorder,
-                                      focusedBorder: textFieldDefaultBorder,
-                                      border: textFieldDefaultBorder,
-                                      filled: true,
-                                      hintStyle: const TextStyle(
-                                        color: Color(0xFF787A87),
-                                        fontWeight: FontWeight.w300,
-                                      ),
-                                      hintText: 'email'.tr,
-                                      contentPadding: const EdgeInsets.only(
-                                        top: 18.8,
-                                        bottom: 17.2,
-                                        left: 12,
-                                        right: 12,
-                                      ),
-                                      // fillColor: AppColor.primaryGreyColor,
-                                      // focusColor: AppColor.primaryGreyColor,
-                                      prefixIcon: IconButton(
+                                        const SizedBox(height: 30),
+                                      ],
+                                    ),
+                                    TextFormField(
+                                      controller: controller.qidController,
+                                      cursorHeight: 20,
+                                      cursorWidth: 1.0,
+                                      keyboardType: TextInputType.text,
+                                      cursorColor: AppColor.primaryRedColor,
+                                      onFieldSubmitted: (s) {
+                                        FocusScope.of(context).nextFocus();
+                                      },
+                                      textInputAction: TextInputAction.next,
+                                      validator: (value) {
+                                        return controller.validateEmail(value!);
+                                      },
+                                      decoration: InputDecoration(
+                                        enabledBorder: textFieldDefaultBorder,
+                                        focusedBorder: textFieldDefaultBorder,
+                                        border: textFieldDefaultBorder,
+                                        filled: true,
+                                        hintStyle: const TextStyle(
+                                          color: Color(0xFF787A87),
+                                          fontWeight: FontWeight.w300,
+                                        ),
+                                        hintText: 'email'.tr,
+                                        contentPadding: const EdgeInsets.only(
+                                          top: 18.8,
+                                          bottom: 17.2,
+                                          left: 12,
+                                          right: 12,
+                                        ),
+                                        // fillColor: AppColor.primaryGreyColor,
+                                        // focusColor: AppColor.primaryGreyColor,
+                                        prefixIcon: IconButton(
                                           icon: Image.asset(
                                             'assets/images/qidIcon.png',
                                             width: 19,
                                             height: 13,
                                           ),
-                                          onPressed: () {}),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 18),
-                                  TextFormField(
-                                    controller: controller.passwordController,
-                                    obscureText: true,
-                                    textInputAction: TextInputAction.done,
-                                    cursorHeight: 20,
-                                    cursorWidth: 1.0,
-                                    keyboardType: TextInputType.text,
-                                    cursorColor: AppColor.primaryRedColor,
-                                    onFieldSubmitted: (s) {
-                                      FocusScope.of(context).nextFocus();
-                                    },
-                                    validator: (value) {
-                                      return controller
-                                          .validatePassword(value!);
-                                    },
-                                    decoration: InputDecoration(
-                                      enabledBorder: textFieldDefaultBorder,
-                                      focusedBorder: textFieldDefaultBorder,
-                                      border: textFieldDefaultBorder,
-                                      filled: true,
-                                      hintStyle: const TextStyle(
-                                        color: Color(0xFF787A87),
-                                        fontWeight: FontWeight.w300,
+                                          onPressed: () {},
+                                        ),
                                       ),
-                                      hintText: 'email'.tr,
-                                      contentPadding: const EdgeInsets.only(
-                                        top: 18.8,
-                                        bottom: 17.2,
-                                        left: 12,
-                                        right: 12,
-                                      ),
-                                      fillColor: AppColor.primaryGreyColor,
-                                      focusColor: AppColor.primaryGreyColor,
-                                      prefixIcon: IconButton(
-                                          icon: Image.asset(
-                                            'assets/images/passwordIcon.png',
-                                            width: 19,
-                                            height: 13,
-                                          ),
-                                          onPressed: () {}),
                                     ),
-                                  ),
-                                  const SizedBox(height: 18),
-                                  Obx(
-                                    () => Stack(
-                                      children: [
-                                        PadiwanButton(
-                                          onPressed: () {
-                                            controller.isLoading.isFalse
-                                                ? controller.login()
-                                                : () {};
-                                          },
-                                          isLoading:
+                                    const SizedBox(height: 18),
+                                    TextFormField(
+                                      controller: controller.passwordController,
+                                      obscureText: true,
+                                      cursorHeight: 20,
+                                      cursorWidth: 1.0,
+                                      keyboardType: TextInputType.emailAddress,
+                                      cursorColor: AppColor.primaryRedColor,
+                                      onFieldSubmitted: (s) {
+                                        controller.isLoading.isFalse
+                                            ? controller.login()
+                                            : () {};
+                                      },
+                                      textInputAction: TextInputAction.done,
+                                      validator: (value) {
+                                        return controller
+                                            .validatePassword(value!);
+                                      },
+                                      decoration: InputDecoration(
+                                        enabledBorder: textFieldDefaultBorder,
+                                        focusedBorder: textFieldDefaultBorder,
+                                        border: textFieldDefaultBorder,
+                                        filled: true,
+                                        hintStyle: const TextStyle(
+                                          color: Color(0xFF787A87),
+                                          fontWeight: FontWeight.w300,
+                                        ),
+                                        hintText: 'password'.tr,
+                                        contentPadding: const EdgeInsets.only(
+                                          top: 18.8,
+                                          bottom: 17.2,
+                                          left: 12,
+                                          right: 12,
+                                        ),
+                                        fillColor: AppColor.primaryGreyColor,
+                                        focusColor: AppColor.primaryGreyColor,
+                                        prefixIcon: IconButton(
+                                            icon: Image.asset(
+                                              'assets/images/passwordIcon.png',
+                                              width: 19,
+                                              height: 13,
+                                            ),
+                                            onPressed: () {}),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 18),
+                                    Obx(
+                                      () => Stack(
+                                        children: [
+                                          PadiwanButton(
+                                            onPressed: () {
                                               controller.isLoading.isFalse
-                                                  ? false
-                                                  : true,
-                                          text: 'signin_btn'.tr,
-                                          width: size.width,
-                                          height: 58,
-                                        ),
-                                        Positioned(
-                                          right: 0,
-                                          width: 58,
-                                          height: 58,
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: AppColor.primaryBlueColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            child: const Icon(
-                                              Icons.arrow_forward_ios,
-                                              size: 27,
-                                              color: Colors.white,
+                                                  ? controller.login()
+                                                  : () {};
+                                            },
+                                            isLoading:
+                                                controller.isLoading.isFalse
+                                                    ? false
+                                                    : true,
+                                            text: 'signin_btn'.tr,
+                                            width: size.width,
+                                            height: 58,
+                                          ),
+                                          Positioned(
+                                            right: 0,
+                                            width: 58,
+                                            height: 58,
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    AppColor.primaryBlueColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                              child: const Icon(
+                                                Icons.arrow_forward_ios,
+                                                size: 27,
+                                                color: Colors.white,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 18),
-                                ],
+                                    const SizedBox(height: 18),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

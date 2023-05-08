@@ -58,7 +58,11 @@ class _CoursesScreenState extends State<CoursesScreen> {
                           ),
                           child: GestureDetector(
                             onTap: () {
-                              Get.to(() => CourseDetailsScreen(id: course.id));
+                              Get.to(
+                                () => CourseDetailsScreen(
+                                  id: course.courseMasterId,
+                                ),
+                              );
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -72,18 +76,11 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      course.title ?? '',
+                                      course.courseName,
                                       style: const TextStyle(
                                         fontSize: 18,
                                         color: Colors.black87,
                                         fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      course.description ?? '',
-                                      style: const TextStyle(
-                                        fontSize: 13,
-                                        color: Colors.black45,
                                       ),
                                     ),
                                     Row(

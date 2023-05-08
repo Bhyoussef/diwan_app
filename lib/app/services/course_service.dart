@@ -1,5 +1,4 @@
-import 'dart:convert';
-
+import 'package:diwanapp/app/models/course_details.dart';
 import 'package:diwanapp/app/models/courses_list_model.dart';
 import 'package:diwanapp/app/services/base_client.dart';
 import 'package:get/get.dart';
@@ -9,13 +8,14 @@ class CouresService extends GetxService {
   Future getCoursesList(userId) async {
     try {
       Dio.Response response = await dio().get(
-        '/mobileservice/getAllExternalCourseListForMob?employeeId=$userId',
+        '/mobileservice/getAllExternalCourseList?employeeId=$userId',
       );
 
       if (response.statusCode == 200) {
         final responseData = response.data as List<dynamic>;
         List<CoursesList> coursesList = [];
-        coursesList = responseData.map((json) => CoursesList.fromJson(json)).toList();
+        coursesList =
+            responseData.map((json) => CoursesList.fromJson(json)).toList();
         return coursesList;
       } else {
         return null;
@@ -36,7 +36,7 @@ class CouresService extends GetxService {
       );
 
       if (response.statusCode == 200) {
-        return coursesListFromJson(response.data);
+        return CoursesDetails.fromJson(response.data);
       } else {
         return null;
       }
