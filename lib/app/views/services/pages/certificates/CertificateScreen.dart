@@ -71,7 +71,7 @@ class _CertificateScreenState extends State<CertificateScreen> {
                         ),
                         onPressed: controller.isLoadingPayslip.isFalse
                             ? () async {
-                                final localeObj = Locale('en');
+                                const localeObj = Locale('en');
                                 final selected = await showMonthYearPicker(
                                   context: context,
                                   initialDate: DateTime(2022),
@@ -83,6 +83,7 @@ class _CertificateScreenState extends State<CertificateScreen> {
                                   final file =
                                       await controller.loadPaySlipPdf(selected);
                                   if (file != null) {
+                                    // ignore: use_build_context_synchronously
                                     openPdf(context, file);
                                   }
                                 }
@@ -139,6 +140,7 @@ class _CertificateScreenState extends State<CertificateScreen> {
                                 final file =
                                     await controller.loadSalaryCertificatePdf();
                                 if (file != null) {
+                                  // ignore: use_build_context_synchronously
                                   openPdf(context, file);
                                 }
                               }

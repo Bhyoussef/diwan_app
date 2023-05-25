@@ -248,37 +248,31 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                               ),
                             ),
                             const SizedBox(height: 20),
-                            TextFormField(
-                              // controller: controller.qidController,
-                              cursorHeight: 20,
-                              cursorWidth: 1.0,
-                              keyboardType: TextInputType.text,
-                              cursorColor: AppColor.primaryRedColor,
-                              decoration: InputDecoration(
-                                enabledBorder: textFieldDefaultBorder,
-                                focusedBorder: textFieldDefaultBorder,
-                                border: textFieldDefaultBorder,
-                                filled: true,
-                                hintStyle: const TextStyle(
-                                  color: Color(0xFF787A87),
-                                  fontWeight: FontWeight.w300,
+                            SizedBox(
+                              width: double.infinity,
+                              height: 60,
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  color:
+                                      const Color.fromARGB(255, 242, 242, 242),
+                                  borderRadius: BorderRadius.circular(8),
                                 ),
-                                hintText: 'leave_days'.tr,
-                                contentPadding: const EdgeInsets.only(
-                                  top: 18.8,
-                                  bottom: 17.2,
-                                  left: 12,
-                                  right: 12,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 18),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        'leave_days'.tr,
+                                        style: const TextStyle(
+                                          color: Color(0xFF787A87),
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                fillColor: AppColor.primaryGreyColor,
-                                focusColor: AppColor.primaryGreyColor,
-                                prefixIcon: IconButton(
-                                    icon: Image.asset(
-                                      'assets/images/home_services_icons/attendance_icon.png',
-                                      width: 25,
-                                      height: 20,
-                                    ),
-                                    onPressed: () {}),
                               ),
                             ),
                             const SizedBox(height: 20),

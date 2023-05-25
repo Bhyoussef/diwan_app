@@ -11,7 +11,7 @@ class LoanListScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'loan_list_request'.tr,
+          'loan_request'.tr,
           style: const TextStyle(
             fontWeight: FontWeight.w200,
             fontSize: 18,

@@ -26,7 +26,7 @@ final Map<String, String> en = {
   'service_request': 'Service request',
   'certificates': 'Certificates',
   'hr_certificates': 'Hr Certificates',
-  'salary_certificate': 'Salary certificate',
+  'salary_certificates': 'Salary certificate',
   'pay_slip': 'Pay Slip',
   'leave_request': 'Leave request',
   'vacations': 'Vacations',
