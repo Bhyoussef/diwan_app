@@ -18,7 +18,14 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
 
   @override
   void initState() {
-    _controller.loadAllLeaveMasters();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+
+
+      _controller.leaveMasterList.clear();
+      _controller.loadAllLeaveMasters();
+
+    });
+
     super.initState();
   }
 
