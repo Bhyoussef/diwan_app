@@ -1,7 +1,9 @@
 import 'package:diwanapp/app/models/leave_model.dart';
 import 'package:diwanapp/app/services/leave_service.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:path/path.dart';
 
 class LeaveController extends GetxController {
   final LeaveService _leaveService = LeaveService();
@@ -10,6 +12,14 @@ class LeaveController extends GetxController {
   ScrollController scrollController = ScrollController();
   late Leave selectedMaster;
   String slectedLeaveId = '';
+
+
+
+  var startDateController = TextEditingController();
+  var endDateController = TextEditingController();
+  var remarksController = TextEditingController();
+
+  int leaveDays = -1;
 
   var isLoadingMaster = false.obs;
 
@@ -33,4 +43,8 @@ class LeaveController extends GetxController {
     isLoadingMaster(false);
     update();
   }
+
+
+
+
 }

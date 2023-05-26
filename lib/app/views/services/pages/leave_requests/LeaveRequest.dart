@@ -19,8 +19,6 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_){
-
-
       _controller.leaveMasterList.clear();
       _controller.loadAllLeaveMasters();
 
@@ -182,9 +180,10 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                             ),
                             const SizedBox(height: 20),
                             TextFormField(
-                              // controller: controller.qidController,
+                              controller: _controller.startDateController,
                               cursorHeight: 20,
                               cursorWidth: 1.0,
+                              readOnly:true,
                               keyboardType: TextInputType.text,
                               cursorColor: AppColor.primaryRedColor,
                               onFieldSubmitted: (s) {
@@ -213,15 +212,27 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                                       'assets/images/home_services_icons/attendance_icon.png',
                                       width: 25,
                                       height: 20,
+                                    ), onPressed: () async{
+                                  var pickedDateDate = await showDatePicker(
+                                    context: context,
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(2022),
+                                    lastDate: DateTime(2099),
+                                    locale: Get.locale.toString().contains('ar')
+                                        ? Locale('ar', 'AR')
+                                        : Locale('en', 'US'),
+                                  );
+                                  _controller.startDateController.text = pickedDateDate.toString().substring(0,10);
+                                },
                                     ),
-                                    onPressed: () {}),
                               ),
                             ),
                             const SizedBox(height: 20),
                             TextFormField(
-                              // controller: controller.qidController,
+                              controller: _controller.endDateController,
                               cursorHeight: 20,
                               cursorWidth: 1.0,
+                              readOnly: true,
                               keyboardType: TextInputType.text,
                               cursorColor: AppColor.primaryRedColor,
                               onFieldSubmitted: (s) {
@@ -251,7 +262,20 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                                       width: 25,
                                       height: 20,
                                     ),
-                                    onPressed: () {}),
+                                    onPressed: () async{
+
+                                      var pickedDateDate = await showDatePicker(
+                                        context: context,
+                                        initialDate: DateTime.now(),
+                                        firstDate: DateTime(2022),
+                                        lastDate: DateTime(2099),
+                                        locale: Get.locale.toString().contains('ar')
+                                            ? const Locale('ar', 'AR')
+                                            : const Locale('en', 'US'),
+                                      );
+                                      _controller.endDateController.text = pickedDateDate.toString().substring(0,10);
+                                      _controller.leaveDays = pickedDateDate!.difference(DateTime.parse(_controller.startDateController.text)).inDays;
+                                    }),
                               ),
                             ),
                             const SizedBox(height: 20),
@@ -270,7 +294,11 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                                   child: Row(
                                     children: [
                                       Text(
-                                        'leave_days'.tr,
+                                        _controller.leaveDays <= 0 ?
+                                  'Invalid date range'.tr
+                                         : _controller.leaveDays == -1 ?
+                                        'leave_days'.tr
+                                        : _controller.leaveDays.toString(),
                                         style: const TextStyle(
                                           color: Color(0xFF787A87),
                                           fontWeight: FontWeight.w300,
@@ -284,7 +312,7 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                             ),
                             const SizedBox(height: 20),
                             TextFormField(
-                              // controller: controller.qidController,
+                              controller: _controller.remarksController,
                               cursorHeight: 20,
                               cursorWidth: 1.0,
                               cursorColor: AppColor.primaryRedColor,
@@ -315,7 +343,11 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                             const SizedBox(height: 20),
                             PadiwanButton(
                               onPressed: () {
-                                () {};
+                                () {
+
+
+
+                                };
                               },
                               isLoading: false,
                               text: 'send_request'.tr,
