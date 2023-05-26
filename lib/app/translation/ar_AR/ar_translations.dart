@@ -39,6 +39,7 @@ final Map<String, String> ar = {
   'leave_days': 'عدد ايام الإجازة',
   'available_leave_days': 'أيام الإجازة القصوى',
   'day': 'يوم',
+  ' day': ' يوم',
   'remarks': 'ملاحظات',
   'send_request': 'ارسال الطلب',
 
@@ -48,5 +49,10 @@ final Map<String, String> ar = {
   'email_required': 'البريد الإلكتروني (مطلوب)',
   'is_email': 'البريد الإلكتروني غير صحيح',
   'password_required': 'كلمة السر (مطلوب)',
-  'password_length': 'يجب أن تتكون كلمة المرور من 6 أحرف على الأقل'
+  'password_length': 'يجب أن تتكون كلمة المرور من 6 أحرف على الأقل',
+  'Leave Request Details': 'تفاصيل طلب الإجازة',
+  'Invalid date range': 'النطاق الزمني غير صالح',
+  'Select leave type': 'حدد إجازة',
+  'Leave request saved': 'تم حفظ طلب المغادرة'
+
 };

@@ -105,7 +105,7 @@ class LeaveService extends GetxService {
       log(response.statusCode.toString());
       if (response.statusCode == 200) {
         Get.toNamed(AppRoutes.homeScreen);
-        Get.snackbar('Leave request'.tr, 'Leave request saved'.tr);
+        Get.snackbar('leave_request'.tr, 'Leave request saved'.tr);
         return response.data;
       } else {
 

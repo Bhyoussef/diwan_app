@@ -44,6 +44,9 @@ class _LeaveRequestDetailsScreenState extends State<LeaveRequestDetailsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
+              Get.locale.toString().contains('ar') ?
+              widget.leave.nameArb
+                  :
               widget.leave.nameEng,
               style: const TextStyle(
                 fontSize: 18,

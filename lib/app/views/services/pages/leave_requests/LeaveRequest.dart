@@ -216,13 +216,17 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                                   var pickedDateDate = await showDatePicker(
                                     context: context,
                                     initialDate: DateTime.now(),
-                                    firstDate: DateTime(2022),
+                                    firstDate: DateTime.now(),
                                     lastDate: DateTime(2099),
                                     locale: Get.locale.toString().contains('ar')
-                                        ? Locale('ar', 'AR')
-                                        : Locale('en', 'US'),
+                                        ? const Locale('ar', 'AR')
+                                        : const Locale('en', 'US'),
                                   );
                                   _controller.startDateController.text = pickedDateDate.toString().substring(0,10);
+                                  _controller.leaveDays = pickedDateDate!.difference(DateTime.parse(_controller.startDateController.text)).inDays;
+                                  setState(() {
+
+                                  });
                                 },
                                     ),
                               ),
@@ -266,8 +270,8 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
 
                                       var pickedDateDate = await showDatePicker(
                                         context: context,
-                                        initialDate: DateTime.now(),
-                                        firstDate: DateTime(2022),
+                                        initialDate: DateTime.now().add(const Duration(days: 1)),
+                                        firstDate: DateTime.now().add(const Duration(days: 1)),
                                         lastDate: DateTime(2099),
                                         locale: Get.locale.toString().contains('ar')
                                             ? const Locale('ar', 'AR')
@@ -275,6 +279,9 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                                       );
                                       _controller.endDateController.text = pickedDateDate.toString().substring(0,10);
                                       _controller.leaveDays = pickedDateDate!.difference(DateTime.parse(_controller.startDateController.text)).inDays;
+                                      setState(() {
+
+                                      });
                                     }),
                               ),
                             ),
@@ -294,10 +301,10 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                                   child: Row(
                                     children: [
                                       Text(
-                                        _controller.leaveDays <= 0 ?
-                                  'Invalid date range'.tr
-                                         : _controller.leaveDays == -1 ?
-                                        'leave_days'.tr
+                                        _controller.leaveDays == -1 ?
+                                  'leave_days'.tr
+                                         : _controller.leaveDays <= 0 ?
+                                        'Invalid date range'.tr
                                         : _controller.leaveDays.toString(),
                                         style: const TextStyle(
                                           color: Color(0xFF787A87),

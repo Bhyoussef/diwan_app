@@ -88,8 +88,10 @@ class _LeaveRequestListState extends State<LeaveRequestList> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-
                           Text(
+                            Get.locale.toString().contains('ar') ?
+                            leaveMaster.nameArb
+                                :
                             leaveMaster.nameEng,
                             style: const TextStyle(
                               fontSize: 18,
