@@ -5,6 +5,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 
 import '../../../../controllers/LeaveController.dart';
+import 'LeaveRequestDetails.dart';
 
 class LeaveRequestList extends StatefulWidget {
   const LeaveRequestList({super.key});
@@ -74,7 +75,7 @@ class _LeaveRequestListState extends State<LeaveRequestList> {
                 ),
                 child: GestureDetector(
                   onTap: () {
-                    //Get.to(() => OfferDetailsScreen(id: offer.id));
+                    Get.to(() => LeaveRequestDetailsScreen(leave: leaveMaster));
                   },
                   child: Container(
                     decoration: BoxDecoration(

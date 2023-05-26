@@ -113,7 +113,7 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                                         horizontal: 18),
                                     child: Row(
                                       children: [
-                                        _controller.slectedLeaveId != ''
+                                        _controller.selectedLeaveId != ''
                                             ? Text(
                                                 _controller
                                                     .selectedMaster.nameEng,
@@ -160,7 +160,7 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                                           fontSize: 18,
                                         ),
                                       ),
-                                      _controller.slectedLeaveId != ''
+                                      _controller.selectedLeaveId != ''
                                           ? Text(
                                               _controller.selectedMaster
                                                       .maxAllowedDays

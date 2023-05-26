@@ -3,28 +3,27 @@ import 'package:diwanapp/app/services/leave_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:path/path.dart';
-
 import '../helpers/shared_preferences.dart';
 
 class LeaveController extends GetxController {
+  ScrollController scrollController = ScrollController();
+
   final LeaveService _leaveService = LeaveService();
   late List<Leave> leaveMasterList = <Leave>[].obs;
 
-  ScrollController scrollController = ScrollController();
+  // late Leave leaveMasterDetails;
+  // var isLoadingDetails = true.obs;
+
+
   late Leave selectedMaster;
-  String slectedLeaveId = '';
-
-
-
+  String selectedLeaveId = '';
   var startDateController = TextEditingController();
   var endDateController = TextEditingController();
   var remarksController = TextEditingController();
-
   int leaveDays = -1;
-
   var isLoadingMaster = false.obs;
   String userId = '';
+
   @override
   void onInit() {
     SharedData.getFromStorage('EMPLOYEE_ID', 'string').then((id) async {
@@ -49,7 +48,7 @@ class LeaveController extends GetxController {
   changeMasterSelected(Leave item) {
     isLoadingMaster(true);
     selectedMaster = item;
-    slectedLeaveId = item.id;
+    selectedLeaveId = item.id;
     print(item.code);
     isLoadingMaster(false);
     update();
@@ -57,24 +56,38 @@ class LeaveController extends GetxController {
 
 
   Future saveLeaveRequest() async {
-    if(slectedLeaveId == "" ){
+    if(selectedLeaveId == "" ){
       Get.snackbar('Leave request'.tr, 'Select leave master'.tr);
     }else if( endDateController.text.isEmpty  || startDateController.text.isEmpty || leaveDays <= 0 || leaveDays > selectedMaster.maxAllowedDays){
       Get.snackbar('Leave request'.tr, 'Invalid Date range'.tr);
     } else{
-      await _leaveService.saveLeaveRequest(slectedLeaveId,userId,startDateController.text,endDateController.text,remarksController.text);
+      await _leaveService.saveLeaveRequest(selectedLeaveId,userId,startDateController.text,endDateController.text,remarksController.text);
       reset();
     }
   }
 
   reset(){
-    slectedLeaveId = '';
+    selectedLeaveId = '';
     leaveDays = -1;
     startDateController.clear();
     endDateController.clear();
     remarksController.clear();
 
   }
+
+
+  // Future loadLeaveRequestDetails(id) async {
+  //   isLoadingDetails(true);
+  //   var response = await _leaveService.getLeaveRequestDetails(id);
+  //
+  //   if (response != null) {
+  //     isLoadingDetails(false);
+  //     leaveMasterDetails = response;
+  //
+  //     update();
+  //   }
+  //   isLoadingDetails(false);
+  // }
 
 
 

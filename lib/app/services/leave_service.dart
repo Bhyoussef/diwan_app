@@ -123,4 +123,28 @@ class LeaveService extends GetxService {
 
 
 
+  Future getLeaveRequestDetails(id) async {
+    try {
+      Dio.Response response = await dio().get(
+        '/mobileservice/getLeaveById/$id',
+      );
+
+      if (response.statusCode == 200) {
+        final responseData = response.data as Leave;
+
+        return responseData;
+      } else {
+        return null;
+      }
+    } on Dio.DioError catch (e) {
+      // Backend Form Validation Error
+      if (e.type == Dio.DioErrorType.unknown) {
+        Get.snackbar('Server Error'.tr, 'A network error occurred'.tr);
+      }
+      return null;
+    }
+  }
+
+
+
 }
