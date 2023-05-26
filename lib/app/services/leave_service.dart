@@ -8,6 +8,8 @@ import 'package:diwanapp/app/services/base_client.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as Dio;
 
+import '../routes/app_pages.dart';
+
 class LeaveService extends GetxService {
   Future getLeaveMasters() async {
     try {
@@ -102,6 +104,7 @@ class LeaveService extends GetxService {
 
       log(response.statusCode.toString());
       if (response.statusCode == 200) {
+        Get.toNamed(AppRoutes.homeScreen);
         Get.snackbar('Leave request'.tr, 'Leave request saved'.tr);
         return response.data;
       } else {

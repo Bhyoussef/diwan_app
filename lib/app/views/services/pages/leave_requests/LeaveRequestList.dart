@@ -19,7 +19,11 @@ class _LeaveRequestListState extends State<LeaveRequestList> {
 
   @override
   void initState() {
-    controller.loadAllLeaveMasters();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      controller.leaveMasterList.clear();
+      controller.loadAllLeaveMasters();
+    });
+
     super.initState();
   }
 
