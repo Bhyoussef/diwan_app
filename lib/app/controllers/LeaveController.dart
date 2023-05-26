@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:path/path.dart';
 
+import '../helpers/shared_preferences.dart';
+
 class LeaveController extends GetxController {
   final LeaveService _leaveService = LeaveService();
   late List<Leave> leaveMasterList = <Leave>[].obs;
@@ -22,6 +24,15 @@ class LeaveController extends GetxController {
   int leaveDays = -1;
 
   var isLoadingMaster = false.obs;
+  String userId = '';
+  @override
+  void onInit() {
+    SharedData.getFromStorage('EMPLOYEE_ID', 'string').then((id) async {
+      userId = id;
+    });
+
+    super.onInit();
+  }
 
   Future loadAllLeaveMasters() async {
     isLoadingMaster(true);
@@ -42,6 +53,13 @@ class LeaveController extends GetxController {
     print(item.code);
     isLoadingMaster(false);
     update();
+  }
+
+
+  Future saveLeaveRequest() async {
+
+    await _leaveService.saveLeaveRequest(slectedLeaveId,userId,startDateController.text,endDateController.text,remarksController.text);
+
   }
 
 

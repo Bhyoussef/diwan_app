@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:diwanapp/app/models/leave_approvel_model.dart';
 import 'package:diwanapp/app/models/leave_model.dart';
 import 'package:diwanapp/app/services/base_client.dart';
@@ -75,4 +79,45 @@ class LeaveService extends GetxService {
       return null;
     }
   }
+
+  Future saveLeaveRequest(leaveMasterId, employeeId, fromDate,toDate,remarks) async {
+    final body = {
+      "leaveMasterId": leaveMasterId,
+      "employeeId": employeeId,
+      "fromDate": DateTime.parse(fromDate).toString(),
+      "toDate": DateTime.parse(toDate).toString(),
+      "remarks": remarks,
+    };
+    print(body);
+
+    try {
+      Dio.Response response = await dio().post(
+        '/mobileservice/saveLeaveRequest',
+        data: jsonEncode(body),
+        options: Dio.Options(responseType: Dio.ResponseType.bytes, headers: {
+          HttpHeaders.contentTypeHeader: "application/json",
+        }),
+      );
+
+
+      log(response.statusCode.toString());
+      if (response.statusCode == 200) {
+        Get.snackbar('Leave request'.tr, 'Leave request saved'.tr);
+        return response.data;
+      } else {
+
+        return null;
+      }
+    } on Dio.DioError catch (e) {
+      // Backend Form Validation Error
+      if (e.type == Dio.DioErrorType.unknown) {
+        Get.snackbar('Server Error'.tr, 'A network error occurred'.tr);
+      }
+
+      return null;
+    }
+  }
+
+
+
 }

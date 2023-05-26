@@ -343,11 +343,10 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                             const SizedBox(height: 20),
                             PadiwanButton(
                               onPressed: () {
-                                () {
+
+                                      _controller.saveLeaveRequest();
 
 
-
-                                };
                               },
                               isLoading: false,
                               text: 'send_request'.tr,
