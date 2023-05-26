@@ -43,7 +43,7 @@ class LoginModel {
     language: json["language"],
     isQatari: json["isQatari"],
     isManager: json["isManager"],
-    photoUrl: json["photoURL"],
+    photoUrl: json["photoURL"] ?? "",
     userRoles: List<UserRole>.from(json["userRoles"].map((x) => UserRole.fromJson(x))),
   );
 

@@ -8,7 +8,7 @@ class LeaveService extends GetxService {
   Future getLeaveMasters() async {
     try {
       Dio.Response response = await dio().get(
-        '/mobileservice/leaveMasterList',
+        '/mobileservice/leaveMasterList'
       );
 
       if (response.statusCode == 200) {
