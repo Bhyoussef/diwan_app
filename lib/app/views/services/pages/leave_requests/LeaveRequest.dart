@@ -180,6 +180,22 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                             ),
                             const SizedBox(height: 20),
                             TextFormField(
+                              onTap: () async {
+                                var pickedDateDate = await showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime.now(),
+                                  lastDate: DateTime(2099),
+                                  locale: Get.locale.toString().contains('ar')
+                                      ? const Locale('ar', 'AR')
+                                      : const Locale('en', 'US'),
+                                );
+                                _controller.startDateController.text = pickedDateDate.toString().substring(0,10);
+                                _controller.leaveDays = pickedDateDate!.difference(DateTime.parse(_controller.startDateController.text)).inDays;
+                                setState(() {
+
+                                });
+                              },
                               controller: _controller.startDateController,
                               cursorHeight: 20,
                               cursorWidth: 1.0,
@@ -208,31 +224,33 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                                 fillColor: AppColor.primaryGreyColor,
                                 focusColor: AppColor.primaryGreyColor,
                                 prefixIcon: IconButton(
-                                    icon: Image.asset(
-                                      'assets/images/home_services_icons/attendance_icon.png',
-                                      width: 25,
-                                      height: 20,
-                                    ), onPressed: () async{
-                                  var pickedDateDate = await showDatePicker(
-                                    context: context,
-                                    initialDate: DateTime.now(),
-                                    firstDate: DateTime.now(),
-                                    lastDate: DateTime(2099),
-                                    locale: Get.locale.toString().contains('ar')
-                                        ? const Locale('ar', 'AR')
-                                        : const Locale('en', 'US'),
-                                  );
-                                  _controller.startDateController.text = pickedDateDate.toString().substring(0,10);
-                                  _controller.leaveDays = pickedDateDate!.difference(DateTime.parse(_controller.startDateController.text)).inDays;
-                                  setState(() {
-
-                                  });
-                                },
-                                    ),
+                                  icon: Image.asset(
+                                    'assets/images/home_services_icons/attendance_icon.png',
+                                    width: 25,
+                                    height: 20,
+                                  ),
+                                  onPressed: (){},
+                                )
                               ),
                             ),
                             const SizedBox(height: 20),
                             TextFormField(
+                              onTap: () async{
+                                var pickedDateDate = await showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now().add(const Duration(days: 1)),
+                                  firstDate: DateTime.now().add(const Duration(days: 1)),
+                                  lastDate: DateTime(2099),
+                                  locale: Get.locale.toString().contains('ar')
+                                      ? const Locale('ar', 'AR')
+                                      : const Locale('en', 'US'),
+                                );
+                                _controller.endDateController.text = pickedDateDate.toString().substring(0,10);
+                                _controller.leaveDays = pickedDateDate!.difference(DateTime.parse(_controller.startDateController.text)).inDays;
+                                setState(() {
+
+                                });
+                              },
                               controller: _controller.endDateController,
                               cursorHeight: 20,
                               cursorWidth: 1.0,
@@ -266,22 +284,9 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                                       width: 25,
                                       height: 20,
                                     ),
-                                    onPressed: () async{
+                                    onPressed: () {
 
-                                      var pickedDateDate = await showDatePicker(
-                                        context: context,
-                                        initialDate: DateTime.now().add(const Duration(days: 1)),
-                                        firstDate: DateTime.now().add(const Duration(days: 1)),
-                                        lastDate: DateTime(2099),
-                                        locale: Get.locale.toString().contains('ar')
-                                            ? const Locale('ar', 'AR')
-                                            : const Locale('en', 'US'),
-                                      );
-                                      _controller.endDateController.text = pickedDateDate.toString().substring(0,10);
-                                      _controller.leaveDays = pickedDateDate!.difference(DateTime.parse(_controller.startDateController.text)).inDays;
-                                      setState(() {
 
-                                      });
                                     }),
                               ),
                             ),
