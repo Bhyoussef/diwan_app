@@ -1,5 +1,6 @@
 import 'package:diwanapp/app/routes/app_pages.dart';
 import 'package:diwanapp/app/theme/app_colors.dart';
+import 'package:diwanapp/app/views/services/pages/school_allowances/school_allowance_details_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -69,7 +70,7 @@ class _SchoolAllowanceListScreenState extends State<SchoolAllowanceListScreen> {
                 ),
                 child: GestureDetector(
                   onTap: () {
-                    //Get.to(() => LeaveRequestDetailsScreen(leave: eduAllowance));
+                    Get.to(() => SchoolAllowanceDetailsScreen(eduAllowance: eduAllowance ));
                   },
                   child: Container(
                     decoration: BoxDecoration(
