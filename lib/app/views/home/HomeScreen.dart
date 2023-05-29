@@ -74,37 +74,6 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SliverPadding(
-                  padding: const EdgeInsets.only(
-                    top: 40,
-                    left: 20,
-                    right: 20,
-                  ),
-                  sliver: SliverToBoxAdapter(
-                    child: Stack(
-                      children: [
-                        PadiwanButton(
-                          onPressed: () {
-                            Navigator.of(context).pushNamed(
-                              AppRoutes.managementScreen,
-                              arguments: false,
-                            );
-                          },
-                          text: 'management_area'.tr,
-                          height: 90,
-                          width: MediaQuery.of(context).size.width,
-                        ),
-                        Positioned(
-                          left: -40,
-                          child: Image.asset(
-                            Assets.settingsIcon,
-                            height: 98,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                )
               ],
             ),
           ),

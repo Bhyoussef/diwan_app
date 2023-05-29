@@ -13,7 +13,8 @@ class OffersService extends GetxService {
       if (response.statusCode == 200) {
         final responseData = response.data as List<dynamic>;
         List<OffersList> offersList = [];
-        offersList = responseData.map((json) => OffersList.fromJson(json)).toList();
+        offersList =
+            responseData.map((json) => OffersList.fromJson(json)).toList();
         return offersList;
       } else {
         return null;
@@ -36,7 +37,8 @@ class OffersService extends GetxService {
       if (response.statusCode == 200) {
         final responseData = response.data as List<dynamic>;
         List<OffersList> offersList = [];
-        offersList = responseData.map((json) => OffersList.fromJson(json)).toList();
+        offersList =
+            responseData.map((json) => OffersList.fromJson(json)).toList();
         return offersList;
       } else {
         return null;

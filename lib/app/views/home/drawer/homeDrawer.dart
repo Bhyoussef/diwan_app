@@ -35,19 +35,6 @@ List<DrawerItem> drawerItems(BuildContext context, int index) {
       },
     ),
     DrawerItem(
-      title: 'profile'.tr,
-      picPath: Assets.profile,
-      onPressed: () {
-        _closeDrawer(context);
-        if (index != profileIndex) {
-          _navigateToScreen(
-            context,
-            AppRoutes.profileScreen,
-          );
-        }
-      },
-    ),
-    DrawerItem(
       title: 'services'.tr,
       picPath: Assets.services,
       onPressed: () {
@@ -56,32 +43,6 @@ List<DrawerItem> drawerItems(BuildContext context, int index) {
           Navigator.of(context).pushNamed(
             AppRoutes.servicesScreen,
             arguments: true,
-          );
-        }
-      },
-    ),
-    DrawerItem(
-      title: 'management_area'.tr,
-      picPath: Assets.managementArea,
-      onPressed: () {
-        _closeDrawer(context);
-        if (index != managementIndex) {
-          Navigator.of(context).pushNamed(
-            AppRoutes.managementScreen,
-            arguments: true,
-          );
-        }
-      },
-    ),
-    DrawerItem(
-      title: 'notifications'.tr,
-      picPath: Assets.notifications,
-      onPressed: () {
-        _closeDrawer(context);
-        if (index != notificationsIndex) {
-          _navigateToScreen(
-            context,
-            AppRoutes.notificationsScreen,
           );
         }
       },

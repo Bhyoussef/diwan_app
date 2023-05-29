@@ -8,11 +8,13 @@ class CouresService extends GetxService {
   Future getCoursesList(userId) async {
     try {
       Dio.Response response = await dio().get(
-        '/mobileservice/getAllExternalCourseList?employeeId=$userId',
+        '/mobileservice//getEmployeeExternalCourseList?employeeId=$userId',
       );
 
       if (response.statusCode == 200) {
         final responseData = response.data as List<dynamic>;
+
+        print(responseData);
         List<CoursesList> coursesList = [];
         coursesList =
             responseData.map((json) => CoursesList.fromJson(json)).toList();

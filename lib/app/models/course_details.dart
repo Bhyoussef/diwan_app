@@ -6,6 +6,20 @@ CoursesDetails coursesDetailsFromJson(String str) =>
 String coursesDetailsToJson(CoursesDetails data) => json.encode(data.toJson());
 
 class CoursesDetails {
+  String code;
+  String title;
+  String description;
+  DateTime startDate;
+  DateTime lastDateToApply;
+  DateTime endDate;
+  String externalUrl;
+  String courseId;
+  String id;
+  String createdBy;
+  DateTime createdDate;
+  String active;
+  String action;
+
   CoursesDetails({
     required this.code,
     required this.title,
@@ -18,27 +32,9 @@ class CoursesDetails {
     required this.id,
     required this.createdBy,
     required this.createdDate,
-    required this.modifiedBy,
-    required this.modifiedDate,
     required this.active,
     required this.action,
   });
-
-  String code;
-  String title;
-  String description;
-  DateTime startDate;
-  DateTime lastDateToApply;
-  DateTime endDate;
-  String externalUrl;
-  String courseId;
-  String id;
-  String createdBy;
-  DateTime createdDate;
-  String modifiedBy;
-  DateTime modifiedDate;
-  String active;
-  String action;
 
   factory CoursesDetails.fromJson(Map<String, dynamic> json) => CoursesDetails(
         code: json["code"],
@@ -52,8 +48,6 @@ class CoursesDetails {
         id: json["id"],
         createdBy: json["createdBy"],
         createdDate: DateTime.parse(json["createdDate"]),
-        modifiedBy: json["modifiedBy"],
-        modifiedDate: DateTime.parse(json["modifiedDate"]),
         active: json["active"],
         action: json["action"],
       );
@@ -70,8 +64,6 @@ class CoursesDetails {
         "id": id,
         "createdBy": createdBy,
         "createdDate": createdDate.toIso8601String(),
-        "modifiedBy": modifiedBy,
-        "modifiedDate": modifiedDate.toIso8601String(),
         "active": active,
         "action": action,
       };

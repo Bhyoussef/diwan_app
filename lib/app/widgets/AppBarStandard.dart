@@ -17,49 +17,38 @@ class AppBarStandard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                IconButton(
-                  padding: EdgeInsets.zero,
-                  constraints: BoxConstraints(),
-                  onPressed: () {
-                    if (isHome)
-                      Scaffold.of(context).openDrawer();
-                    else
-                      Navigator.pop(context);
-                  },
-                  icon: Icon(
-                    isHome ? Icons.menu : Icons.arrow_back_ios,
-                    color: Colors.white,
-                  ),
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              IconButton(
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+                onPressed: () {
+                  if (isHome) {
+                    Scaffold.of(context).openDrawer();
+                  } else {
+                    Navigator.pop(context);
+                  }
+                },
+                icon: Icon(
+                  isHome ? Icons.menu : Icons.arrow_back_ios,
+                  color: Colors.white,
                 ),
-                Text(
-                  title,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w200,
-                    fontSize: 18,
-                  ),
+              ),
+              Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w200,
+                  fontSize: 18,
                 ),
-                const UserAvatarNotification(),
-              ]),
+              ),
+              Container(
+                width: 30,
+              )
+            ],
+          ),
         ),
-      ),
-    );
-  }
-}
-
-class UserAvatarNotification extends StatelessWidget {
-  const UserAvatarNotification({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Image.asset(
-        'assets/images/user_notification_icon.png',
-        height: 42,
-        width: 43,
       ),
     );
   }

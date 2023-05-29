@@ -60,7 +60,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                             onTap: () {
                               Get.to(
                                 () => CourseDetailsScreen(
-                                  id: course.courseMasterId,
+                                  id: course.id,
                                 ),
                               );
                             },
@@ -76,7 +76,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      course.courseName,
+                                      course.title,
                                       style: const TextStyle(
                                         fontSize: 18,
                                         color: Colors.black87,
@@ -102,7 +102,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                         Text(
                                           DateFormat('yyyy-MM-dd - h:mm')
                                               .format(
-                                            course.endDate,
+                                            course.endDate ?? DateTime.now(),
                                           ),
                                           style: const TextStyle(
                                             color: Colors.black87,
