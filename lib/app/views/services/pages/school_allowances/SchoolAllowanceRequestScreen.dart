@@ -124,7 +124,7 @@ class _SchoolAllowanceRequestScreenState extends State<SchoolAllowanceRequestScr
                                     ),
                                   )
                                       : Text(
-                                    'leave_master'.tr,
+                                    'Select Edu Allowance'.tr,
                                     style: const TextStyle(
                                       color: Color(0xFF787A87),
                                       fontWeight: FontWeight.w300,
@@ -181,20 +181,20 @@ class _SchoolAllowanceRequestScreenState extends State<SchoolAllowanceRequestScr
                       const SizedBox(height: 20),
                       TextFormField(
                         onTap: () async {
-                          // var pickedDateDate = await showDatePicker(
-                          //   context: context,
-                          //   initialDate: DateTime.now(),
-                          //   firstDate: DateTime.now(),
-                          //   lastDate: DateTime(2099),
-                          //   locale: Get.locale.toString().contains('ar')
-                          //       ? const Locale('ar', 'AR')
-                          //       : const Locale('en', 'US'),
-                          // );
-                          // _controller.startDateController.text = pickedDateDate.toString().substring(0,10);
-                          // _controller.leaveDays = pickedDateDate!.difference(DateTime.parse(_controller.startDateController.text)).inDays;
-                          // setState(() {
-                          //
-                          // });
+                          var pickedDateDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime.now().add(const Duration(days: 36500)),
+                            locale: Get.locale.toString().contains('ar')
+                                ? const Locale('ar', 'AR')
+                                : const Locale('en', 'US'),
+                          );
+                          _controller.startDateController.text = pickedDateDate.toString().substring(0,10);
+                          _controller.leaveDays = pickedDateDate!.difference(DateTime.now()).inDays + 1;
+                          setState(() {
+
+                          });
                         },
                         controller: _controller.startDateController,
                         cursorHeight: 20,
@@ -214,7 +214,7 @@ class _SchoolAllowanceRequestScreenState extends State<SchoolAllowanceRequestScr
                               color: Color(0xFF787A87),
                               fontWeight: FontWeight.w300,
                             ),
-                            hintText: 'start_date'.tr,
+                            hintText: 'TransDate'.tr,
                             contentPadding: const EdgeInsets.only(
                               top: 18.8,
                               bottom: 17.2,
@@ -233,96 +233,38 @@ class _SchoolAllowanceRequestScreenState extends State<SchoolAllowanceRequestScr
                             )
                         ),
                       ),
+
                       const SizedBox(height: 20),
-                      TextFormField(
-                        onTap: () async{
-                          // var pickedDateDate = await showDatePicker(
-                          //   context: context,
-                          //   initialDate: DateTime.now().add(const Duration(days: 1)),
-                          //   firstDate: DateTime.now().add(const Duration(days: 1)),
-                          //   lastDate: DateTime(2099),
-                          //   locale: Get.locale.toString().contains('ar')
-                          //       ? const Locale('ar', 'AR')
-                          //       : const Locale('en', 'US'),
-                          // );
-                          // _controller.endDateController.text = pickedDateDate.toString().substring(0,10);
-                          // _controller.leaveDays = pickedDateDate!.difference(DateTime.parse(_controller.startDateController.text)).inDays;
-                          // setState(() {
-                          //
-                          // });
-                        },
-                        controller: _controller.endDateController,
-                        cursorHeight: 20,
-                        cursorWidth: 1.0,
-                        readOnly: true,
-                        keyboardType: TextInputType.text,
-                        cursorColor: AppColor.primaryRedColor,
-                        onFieldSubmitted: (s) {
-                          FocusScope.of(context).nextFocus();
-                        },
-                        decoration: InputDecoration(
-                          enabledBorder: textFieldDefaultBorder,
-                          focusedBorder: textFieldDefaultBorder,
-                          border: textFieldDefaultBorder,
-                          filled: true,
-                          hintStyle: const TextStyle(
-                            color: Color(0xFF787A87),
-                            fontWeight: FontWeight.w300,
+                      SizedBox(
+                        width: double.infinity,
+                        height: 60,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color:
+                            const Color.fromARGB(255, 242, 242, 242),
+                            borderRadius: BorderRadius.circular(8),
                           ),
-                          hintText: 'end_date'.tr,
-                          contentPadding: const EdgeInsets.only(
-                            top: 18.8,
-                            bottom: 17.2,
-                            left: 12,
-                            right: 12,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 18),
+                            child: Row(
+                              children: [
+                                Text(
+                                  _controller.leaveDays == -1 ?
+                                  'leave_days'.tr :
+                                      _controller.leaveDays.toString(),
+                                  style: const TextStyle(
+                                    color: Color(0xFF787A87),
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                          fillColor: AppColor.primaryGreyColor,
-                          focusColor: AppColor.primaryGreyColor,
-                          prefixIcon: IconButton(
-                              icon: Image.asset(
-                                'assets/images/home_services_icons/attendance_icon.png',
-                                width: 25,
-                                height: 20,
-                              ),
-                              onPressed: () {
-
-
-                              }),
                         ),
                       ),
                       const SizedBox(height: 20),
-                      // SizedBox(
-                      //   width: double.infinity,
-                      //   height: 60,
-                      //   child: DecoratedBox(
-                      //     decoration: BoxDecoration(
-                      //       color:
-                      //       const Color.fromARGB(255, 242, 242, 242),
-                      //       borderRadius: BorderRadius.circular(8),
-                      //     ),
-                      //     child: Padding(
-                      //       padding: const EdgeInsets.symmetric(
-                      //           horizontal: 18),
-                      //       child: Row(
-                      //         children: [
-                      //           Text(
-                      //             _controller.leaveDays == -1 ?
-                      //             'leave_days'.tr
-                      //                 : _controller.leaveDays <= 0 ?
-                      //             'Invalid date range'.tr
-                      //                 : _controller.leaveDays.toString(),
-                      //             style: const TextStyle(
-                      //               color: Color(0xFF787A87),
-                      //               fontWeight: FontWeight.w300,
-                      //               fontSize: 18,
-                      //             ),
-                      //           ),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-                      // const SizedBox(height: 20),
                       TextFormField(
                         controller: _controller.remarksController,
                         cursorHeight: 20,
@@ -355,7 +297,7 @@ class _SchoolAllowanceRequestScreenState extends State<SchoolAllowanceRequestScr
                       const SizedBox(height: 20),
                       PadiwanButton(
                         onPressed: () {
-                          //_controller.saveLeaveRequest();
+                          _controller.saveEduAllowanceRequest();
                         },
                         isLoading: false,
                         text: 'send_request'.tr,

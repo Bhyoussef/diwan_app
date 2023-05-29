@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../helpers/shared_preferences.dart';
 import '../models/edu_allowance_model.dart';
 import '../services/edu_allowance_service.dart';
 
@@ -8,11 +9,24 @@ class EduAllowanceController extends GetxController {
   late List<EduAllowanceModel> eduAllowanceMasterList = <EduAllowanceModel>[].obs;
   var isLoadingEduAllowanceMasterList = false.obs;
   String selectedEduAllowanceId = '';
+  int leaveDays = -1;
   late EduAllowanceModel selectedEduAllowance;
   final EduAllowanceService _eduAllowanceService = EduAllowanceService();
   var startDateController = TextEditingController();
-  var endDateController = TextEditingController();
+
   var remarksController = TextEditingController();
+
+
+  String userId = '';
+
+  @override
+  void onInit() {
+    SharedData.getFromStorage('EMPLOYEE_ID', 'string').then((id) async {
+      userId = id;
+    });
+
+    super.onInit();
+  }
 
   Future getEduAllowanceMastersList() async {
     isLoadingEduAllowanceMasterList(true);
@@ -29,9 +43,31 @@ class EduAllowanceController extends GetxController {
     isLoadingEduAllowanceMasterList(true);
     selectedEduAllowance = item;
     selectedEduAllowanceId = item.id;
-    print(item.code);
     isLoadingEduAllowanceMasterList(false);
     update();
+  }
+
+
+
+  Future saveEduAllowanceRequest() async {
+    if(selectedEduAllowanceId == "" ) {
+      Get.snackbar('Edu Allowance'.tr, 'Select Edu Allowance'.tr);
+
+
+    }  else if( leaveDays > selectedEduAllowance.maxAllowed ){
+      Get.snackbar('Edu Allowance'.tr, "${'Max allowed days'.tr} ${selectedEduAllowance.maxAllowed}");
+    } else{
+      await _eduAllowanceService.saveEduAllowanceRequest(selectedEduAllowanceId,userId,startDateController.text,"0",remarksController.text);
+      reset();
+    }
+  }
+
+  reset(){
+    selectedEduAllowanceId = '';
+    leaveDays = -1;
+    startDateController.clear();
+    remarksController.clear();
+
   }
 
 
