@@ -25,7 +25,9 @@ class CourseController extends GetxController {
         }
       }
       isLoading(false);
-    });
+    }
+
+    );
   }
 
   Future loadCourseDetails(id) async {

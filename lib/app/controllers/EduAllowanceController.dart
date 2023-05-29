@@ -6,8 +6,12 @@ import '../services/edu_allowance_service.dart';
 
 class EduAllowanceController extends GetxController {
   ScrollController scrollController = ScrollController();
+  late List<EduAllowanceModel> myEduAllowanceList = <EduAllowanceModel>[].obs;
+  var isLoadingEduAllowanceList = false.obs;
+
   late List<EduAllowanceModel> eduAllowanceMasterList = <EduAllowanceModel>[].obs;
   var isLoadingEduAllowanceMasterList = false.obs;
+
   String selectedEduAllowanceId = '';
   int leaveDays = -1;
   late EduAllowanceModel selectedEduAllowance;
@@ -26,6 +30,21 @@ class EduAllowanceController extends GetxController {
     });
 
     super.onInit();
+  }
+
+  Future loadEduAllowance() async {
+    isLoadingEduAllowanceList(true);
+
+    SharedData.getFromStorage('EMPLOYEE_ID', 'string').then((id) async {
+      var response = await _eduAllowanceService.getMyEduAllowanceList(id);
+
+      if (response != null) {
+        for (var eduAllowance in response) {
+          myEduAllowanceList.add(eduAllowance);
+        }
+      }
+      isLoadingEduAllowanceList(false);
+    });
   }
 
   Future getEduAllowanceMastersList() async {

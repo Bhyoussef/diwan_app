@@ -41,7 +41,7 @@ class EduAllowanceModel {
     type: json["type"],
     maxAllowed: json["maxAllowed"].toInt(),
     componentCode: json["componentCode"],
-    eduNameAr: json["eduNameAR"],
+    eduNameAr: json["eduNameAR"] ??"",
     id: json["id"],
     createdBy: json["createdBy"],
     createdDate: DateTime.parse(json["createdDate"]),

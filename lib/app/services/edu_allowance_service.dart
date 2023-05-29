@@ -14,6 +14,30 @@ class EduAllowanceService extends GetxService {
 
 
 
+  Future getMyEduAllowanceList(userId) async {
+    try {
+      Dio.Response response = await dio().get(
+        '/mobileservice/getEmpEduAllowanceList/$userId'
+      );
+
+      if (response.statusCode == 200) {
+
+        final responseData = response.data as List<dynamic>;
+        List<EduAllowanceModel> myEduAllowanceList = [];
+        myEduAllowanceList = responseData.map((json) => EduAllowanceModel.fromJson(json)).toList();
+        return myEduAllowanceList;
+      } else {
+        return null;
+      }
+    } on Dio.DioError catch (e) {
+      // Backend Form Validation Error
+      if (e.type == Dio.DioErrorType.unknown) {
+        Get.snackbar('Server Error'.tr, 'A network error occurred'.tr);
+      }
+      return null;
+    }
+  }
+
   Future getEduAllowanceMasterList() async {
     try {
       Dio.Response response = await dio().get(
@@ -45,7 +69,7 @@ class EduAllowanceService extends GetxService {
       "transDate": DateTime.parse(fromDate).toString(),
       "remarks": remarks,
     };
-
+    log(body.toString());
     try {
       Dio.Response response = await dio().post(
         '/mobileservice/saveEduAllowance',
@@ -54,7 +78,6 @@ class EduAllowanceService extends GetxService {
           HttpHeaders.contentTypeHeader: "application/json",
         }),
       );
-
 
       log(response.statusCode.toString());
       if (response.statusCode == 200) {

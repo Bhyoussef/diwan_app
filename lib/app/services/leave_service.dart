@@ -34,7 +34,7 @@ class LeaveService extends GetxService {
     }
   }
 
-  Future getMyLeaveApprovelList(userId) async {
+  Future getMyLeaveApprovedList(userId) async {
     try {
       Dio.Response response = await dio().get(
         '/mobileservice/getMyLeaveApprovelList?employeeId=$userId',
