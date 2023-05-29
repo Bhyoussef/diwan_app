@@ -48,5 +48,6 @@ final Map<String, String> en = {
   'email_required': 'Email is required',
   'is_email': 'Please enter a valid email address',
   'password_required': 'Password is required',
-  'password_length': 'Passwords must be at least 6 characters'
+  'password_length': 'Passwords must be at least 6 characters',
+  'school_allowance_request': 'School Allowance Request'
 };
