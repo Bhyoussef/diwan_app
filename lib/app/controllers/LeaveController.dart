@@ -58,8 +58,12 @@ class LeaveController extends GetxController {
   Future saveLeaveRequest() async {
     if(selectedLeaveId == "" ){
       Get.snackbar('leave_request'.tr, 'Select leave type'.tr);
-    }else if( endDateController.text.isEmpty  || startDateController.text.isEmpty || leaveDays <= 0 || leaveDays > selectedMaster.maxAllowedDays){
-      Get.snackbar('leave_request'.tr, 'Invalid date range'.tr);
+
+
+    } else if(leaveDays == -1 || endDateController.text.isEmpty  || startDateController.text.isEmpty || leaveDays <= 0){
+      Get.snackbar('leave_request'.tr, 'Select leave dates'.tr);
+    } else if( leaveDays > selectedMaster.maxAllowedDays ){
+      Get.snackbar('leave_request'.tr, "${'available_leave_days'.tr} ${selectedMaster.maxAllowedDays}");
     } else{
       await _leaveService.saveLeaveRequest(selectedLeaveId,userId,startDateController.text,endDateController.text,remarksController.text);
       reset();

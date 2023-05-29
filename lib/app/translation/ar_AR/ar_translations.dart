@@ -53,6 +53,8 @@ final Map<String, String> ar = {
   'Leave Request Details': 'تفاصيل طلب الإجازة',
   'Invalid date range': 'النطاق الزمني غير صالح',
   'Select leave type': 'حدد إجازة',
-  'Leave request saved': 'تم حفظ طلب المغادرة'
+  'Leave request saved': 'تم حفظ طلب المغادرة',
+  'Select leave dates': 'حدد تواريخ الإجازة',
+
 
 };
