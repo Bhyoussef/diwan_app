@@ -19,6 +19,7 @@ class EduAllowanceController extends GetxController {
   var startDateController = TextEditingController();
 
   var remarksController = TextEditingController();
+  var requestedAmountController = TextEditingController();
 
 
   String userId = '';
@@ -76,7 +77,7 @@ class EduAllowanceController extends GetxController {
     }  else if( leaveDays > selectedEduAllowance.maxAllowed ){
       Get.snackbar('Edu Allowance'.tr, "${'Max allowed days'.tr} ${selectedEduAllowance.maxAllowed}");
     } else{
-      await _eduAllowanceService.saveEduAllowanceRequest(selectedEduAllowanceId,userId,startDateController.text,"0",remarksController.text);
+      await _eduAllowanceService.saveEduAllowanceRequest(selectedEduAllowanceId,userId,startDateController.text,requestedAmountController.text,remarksController.text);
       reset();
     }
   }
