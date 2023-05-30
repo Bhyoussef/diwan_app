@@ -6,18 +6,48 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../models/loan_details_model.dart';
+import '../models/loan_types_model.dart';
 
 class LoanController extends GetxController {
   ScrollController scrollController = ScrollController();
-
   final LoanService _loanService = LoanService();
+
   late List<Loan> loanList = <Loan>[].obs;
   var isLoading = false.obs;
+
+
+  late List<LoanTypesModel> loanTypesList = <LoanTypesModel>[].obs;
+  var isLoadingLoanTypes = false.obs;
+  late LoanTypesModel selectedLoanType;
+  String selectedLoanTypeId = '';
+
+  var remarksController = TextEditingController();
+
 
   String userId = '';
 
   late LoanDetailsModel? loanDetailsModel;
   var isLoadingLoanDetails = false.obs;
+
+
+  Future loadAllLoanTypes() async {
+    isLoadingLoanTypes(true);
+    var response = await _loanService.getLoanTypes();
+
+    if (response != null) {
+      for (var loanType in response) {
+        loanTypesList.add(loanType);
+      }
+    }
+    isLoadingLoanTypes(false);
+  }
+  changeLoanTypeSelected(LoanTypesModel item) {
+    isLoadingLoanTypes(true);
+    selectedLoanType = item;
+    selectedLoanTypeId = item.id;
+    isLoadingLoanTypes(false);
+    update();
+  }
 
   Future loadAllLoanList() async {
     isLoading(true);
