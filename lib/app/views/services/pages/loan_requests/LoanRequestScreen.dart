@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../controllers/LoanController.dart';
 import '../../../../helpers/keyboard.dart';
 import '../../../../theme/app_colors.dart';
@@ -22,7 +21,6 @@ class _LoanRequestScreenState extends State<LoanRequestScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_){
       _controller.loanTypesList.clear();
       _controller.loadAllLoanTypes();
-
     });
 
     super.initState();

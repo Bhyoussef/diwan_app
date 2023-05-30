@@ -55,6 +55,7 @@ class LoanController extends GetxController {
     }
     isLoadingLoanTypes(false);
   }
+
   changeLoanTypeSelected(LoanTypesModel item) {
     isLoadingLoanTypes(true);
     selectedLoanType = item;
@@ -95,8 +96,10 @@ class LoanController extends GetxController {
       Get.snackbar('Loan Request'.tr, 'Select loan type'.tr);
     } else if (requestedAmountController.text.isEmpty) {
       Get.snackbar('Loan Request'.tr, 'Enter your requested amount'.tr);
-    } else if (double. parse(requestedAmountController.text)  > selectedLoanType.maxAllowed) {
-      Get.snackbar('Loan Request'.tr, "${'Max Amount is'.tr} ${selectedLoanType.maxAllowed}");
+    }  else if (double. parse(requestedAmountController.text)  > selectedLoanType.maxAllowed) {
+      Get.snackbar('Loan Request'.tr, "${'Max allowed'.tr} ${selectedLoanType.maxAllowed}");
+    } else if (selectedNumberOfInstallment == "") {
+      Get.snackbar('Loan Request'.tr, "Choose the number of installment");
     } else {
       await _loanService.saveLoanRequest(
           selectedLoanTypeId,
