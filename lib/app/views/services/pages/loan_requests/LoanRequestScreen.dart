@@ -141,6 +141,111 @@ class _LoanRequestScreenState extends State<LoanRequestScreen> {
                         ),
                       ),
                       const SizedBox(height: 20),
+                      TextFormField(
+                        controller: _controller.requestedAmountController,
+                        cursorHeight: 20,
+                        cursorWidth: 1.0,
+                        cursorColor: AppColor.primaryRedColor,
+                        textInputAction: TextInputAction.done,
+                        onFieldSubmitted: (s) {},
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          enabledBorder: textFieldDefaultBorder,
+                          focusedBorder: textFieldDefaultBorder,
+                          border: textFieldDefaultBorder,
+                          filled: true,
+                          hintStyle: const TextStyle(
+                            color: Color(0xFF787A87),
+                            fontWeight: FontWeight.w300,
+                          ),
+                          hintText: 'Requested Amount'.tr,
+                          contentPadding: const EdgeInsets.only(
+                            top: 18.8,
+                            bottom: 17.2,
+                            left: 18,
+                            right: 18,
+                          ),
+                          fillColor: AppColor.primaryGreyColor,
+                          focusColor: AppColor.primaryGreyColor,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      InkWell(
+                        onTap: () {
+                          KeyboardUtil.hideKeyboard(context);
+                          Get.bottomSheet(
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: ListView.builder(
+                                  controller: _controller.scrollController,
+                                  itemCount: _controller.numberOfInstallmentList.length,
+                                  itemBuilder: (listContext, index) {
+                                    var item = _controller.numberOfInstallmentList[index];
+                                    return RadioListTile<int>(
+                                      title: Text(item.toString()),
+                                      value: index,
+                                      groupValue: null,
+                                      onChanged: (value) {
+                                        KeyboardUtil.hideKeyboard(context);
+                                        _controller.selectedNumberOfInstallment = item.toString();
+                                        Navigator.of(context).pop();
+                                      },
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            backgroundColor: Colors.white,
+                            isDismissible: true,
+                            enableDrag: false,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30),
+                              ),
+                            ),
+                          );
+                        },
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: 60,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: const Color.fromARGB(
+                                  255, 242, 242, 242),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 18),
+                              child: Row(
+                                children: [
+                                  _controller.selectedNumberOfInstallment == ''
+                                      ? Text(
+                                    "No Of Installment".tr,
+                                    style: const TextStyle(
+                                      color: Color(0xFF787A87),
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 18,
+                                    ),
+                                  )
+                                      : Text(
+                                    _controller.selectedNumberOfInstallment,
+                                    style: const TextStyle(
+                                      color: Color(0xFF787A87),
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
 
                       TextFormField(
                         controller: _controller.remarksController,

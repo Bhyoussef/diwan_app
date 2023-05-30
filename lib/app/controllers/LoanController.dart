@@ -22,12 +22,17 @@ class LoanController extends GetxController {
   String selectedLoanTypeId = '';
 
   var remarksController = TextEditingController();
+  var requestedAmountController = TextEditingController();
 
 
   String userId = '';
 
   late LoanDetailsModel? loanDetailsModel;
   var isLoadingLoanDetails = false.obs;
+
+  List<int> numberOfInstallmentList = [12,36,24,48,60];
+
+  String selectedNumberOfInstallment = "";
 
 
   Future loadAllLoanTypes() async {
@@ -48,6 +53,7 @@ class LoanController extends GetxController {
     isLoadingLoanTypes(false);
     update();
   }
+
 
   Future loadAllLoanList() async {
     isLoading(true);
