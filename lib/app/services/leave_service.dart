@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:diwanapp/app/models/leave_approvel_model.dart';
+import 'package:diwanapp/app/models/leave_master_model.dart';
 import 'package:diwanapp/app/models/leave_model.dart';
 import 'package:diwanapp/app/services/base_client.dart';
 import 'package:get/get.dart';
@@ -13,14 +14,13 @@ import '../routes/app_pages.dart';
 class LeaveService extends GetxService {
   Future getLeaveMasters() async {
     try {
-      Dio.Response response = await dio().get(
-        '/mobileservice/leaveMasterList'
-      );
+      Dio.Response response = await dio().get('/mobileservice/leaveMasterList');
 
       if (response.statusCode == 200) {
         final responseData = response.data as List<dynamic>;
-        List<Leave> leaveList = [];
-        leaveList = responseData.map((json) => Leave.fromJson(json)).toList();
+        List<LeaveMaster> leaveList = [];
+        leaveList =
+            responseData.map((json) => LeaveMaster.fromJson(json)).toList();
         return leaveList;
       } else {
         return null;
@@ -36,15 +36,15 @@ class LeaveService extends GetxService {
 
   Future getMyLeaveApprovedList(userId) async {
     try {
-      Dio.Response response = await dio().get(
+      Dio.Response response = await dio().post(
         '/mobileservice/getMyLeaveApprovelList?employeeId=$userId',
       );
 
       if (response.statusCode == 200) {
         final responseData = response.data as List<dynamic>;
-        List<LeaveApprovel> approvelList = [];
+        List<Leave> approvelList = [];
         approvelList =
-            responseData.map((json) => LeaveApprovel.fromJson(json)).toList();
+            responseData.map((json) => Leave.fromJson(json)).toList();
         return approvelList;
       } else {
         return null;
@@ -82,7 +82,8 @@ class LeaveService extends GetxService {
     }
   }
 
-  Future saveLeaveRequest(leaveMasterId, employeeId, fromDate,toDate,remarks) async {
+  Future saveLeaveRequest(
+      leaveMasterId, employeeId, fromDate, toDate, remarks) async {
     final body = {
       "leaveMasterId": leaveMasterId,
       "employeeId": employeeId,
@@ -90,7 +91,6 @@ class LeaveService extends GetxService {
       "toDate": DateTime.parse(toDate).toString(),
       "remarks": remarks,
     };
-    print(body);
 
     try {
       Dio.Response response = await dio().post(
@@ -101,14 +101,12 @@ class LeaveService extends GetxService {
         }),
       );
 
-
       log(response.statusCode.toString());
       if (response.statusCode == 200) {
         Get.toNamed(AppRoutes.homeScreen);
         Get.snackbar('leave_request'.tr, 'Leave request saved'.tr);
         return response.data;
       } else {
-
         return null;
       }
     } on Dio.DioError catch (e) {
@@ -121,8 +119,6 @@ class LeaveService extends GetxService {
     }
   }
 
-
-
   Future getLeaveRequestDetails(id) async {
     try {
       Dio.Response response = await dio().get(
@@ -130,7 +126,7 @@ class LeaveService extends GetxService {
       );
 
       if (response.statusCode == 200) {
-        final responseData = response.data as Leave;
+        final responseData = response.data as LeaveMaster;
 
         return responseData;
       } else {
@@ -144,7 +140,4 @@ class LeaveService extends GetxService {
       return null;
     }
   }
-
-
-
 }

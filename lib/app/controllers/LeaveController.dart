@@ -1,3 +1,4 @@
+import 'package:diwanapp/app/models/leave_master_model.dart';
 import 'package:diwanapp/app/models/leave_model.dart';
 import 'package:diwanapp/app/services/leave_service.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,18 +10,16 @@ class LeaveController extends GetxController {
   ScrollController scrollController = ScrollController();
 
   final LeaveService _leaveService = LeaveService();
-  late List<Leave> leaveMasterList = <Leave>[].obs;
+  late List<LeaveMaster> leaveMasterList = <LeaveMaster>[].obs;
+  late List<Leave> leaveList = <Leave>[].obs;
 
-  // late Leave leaveMasterDetails;
-  // var isLoadingDetails = true.obs;
-
-
-  late Leave selectedMaster;
+  late LeaveMaster selectedMaster;
   String selectedLeaveId = '';
   var startDateController = TextEditingController();
   var endDateController = TextEditingController();
   var remarksController = TextEditingController();
   int leaveDays = -1;
+  var isLoading = false.obs;
   var isLoadingMaster = false.obs;
   String userId = '';
 
@@ -45,55 +44,55 @@ class LeaveController extends GetxController {
     isLoadingMaster(false);
   }
 
-  changeMasterSelected(Leave item) {
+  Future loadAllLeaveList() async {
+    isLoading(true);
+    SharedData.getFromStorage('EMPLOYEE_ID', 'string').then((id) async {
+      var response = await _leaveService.getMyLeaveApprovedList(id);
+
+      if (response != null) {
+        for (var leave in response) {
+          leaveList.add(leave);
+        }
+      }
+      isLoading(false);
+    });
+  }
+
+  changeMasterSelected(LeaveMaster item) {
     isLoadingMaster(true);
     selectedMaster = item;
     selectedLeaveId = item.id;
-    print(item.code);
     isLoadingMaster(false);
     update();
   }
 
-
   Future saveLeaveRequest() async {
-    if(selectedLeaveId == "" ){
+    if (selectedLeaveId == "") {
       Get.snackbar('leave_request'.tr, 'Select leave type'.tr);
-
-
-    } else if(leaveDays == -1 || endDateController.text.isEmpty  || startDateController.text.isEmpty || leaveDays <= 0){
+    } else if (leaveDays == -1 ||
+        endDateController.text.isEmpty ||
+        startDateController.text.isEmpty ||
+        leaveDays <= 0) {
       Get.snackbar('leave_request'.tr, 'Select leave dates'.tr);
-    } else if( leaveDays > selectedMaster.maxAllowedDays ){
-      Get.snackbar('leave_request'.tr, "${'available_leave_days'.tr} ${selectedMaster.maxAllowedDays}");
-    } else{
-      await _leaveService.saveLeaveRequest(selectedLeaveId,userId,startDateController.text,endDateController.text,remarksController.text);
+    } else if (leaveDays > selectedMaster.maxAllowedDays) {
+      Get.snackbar('leave_request'.tr,
+          "${'available_leave_days'.tr} ${selectedMaster.maxAllowedDays}");
+    } else {
+      await _leaveService.saveLeaveRequest(
+          selectedLeaveId,
+          userId,
+          startDateController.text,
+          endDateController.text,
+          remarksController.text);
       reset();
     }
   }
 
-  reset(){
+  reset() {
     selectedLeaveId = '';
     leaveDays = -1;
     startDateController.clear();
     endDateController.clear();
     remarksController.clear();
-
   }
-
-
-  // Future loadLeaveRequestDetails(id) async {
-  //   isLoadingDetails(true);
-  //   var response = await _leaveService.getLeaveRequestDetails(id);
-  //
-  //   if (response != null) {
-  //     isLoadingDetails(false);
-  //     leaveMasterDetails = response;
-  //
-  //     update();
-  //   }
-  //   isLoadingDetails(false);
-  // }
-
-
-
-
 }
