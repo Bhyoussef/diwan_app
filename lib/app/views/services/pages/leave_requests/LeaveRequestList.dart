@@ -3,6 +3,7 @@ import 'package:diwanapp/app/routes/app_pages.dart';
 import 'package:diwanapp/app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'LeaveRequestDetails.dart';
 
 class LeaveRequestList extends StatefulWidget {
@@ -71,7 +72,7 @@ class _LeaveRequestListState extends State<LeaveRequestList> {
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: getCardBackground(leave.status),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Padding(
@@ -80,20 +81,86 @@ class _LeaveRequestListState extends State<LeaveRequestList> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      leave.empName,
-                                      style: const TextStyle(
-                                        fontSize: 18,
+                                    const Text(
+                                      'Leave type :',
+                                      style: TextStyle(
+                                        fontSize: 16,
                                         color: Colors.black87,
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                     Text(
-                                      leave.status,
+                                      leave.leaveMasterId,
                                       style: const TextStyle(
-                                        fontSize: 13,
-                                        color: Colors.black45,
+                                        fontSize: 16,
+                                        color: Colors.black87,
+                                        fontWeight: FontWeight.w300,
                                       ),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        const Text(
+                                          'Leave days: ',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.black87,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        Text(
+                                          '${leave.leaveDays.toInt()} days',
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.black87,
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        const Text(
+                                          'From: ',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.black87,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        Text(
+                                          DateFormat('dd-MM-yyyy')
+                                              .format(leave.fromDate),
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.black87,
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        const Text(
+                                          'To: ',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.black87,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        Text(
+                                          DateFormat('dd-MM-yyyy')
+                                              .format(leave.toDate),
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.black87,
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -111,5 +178,17 @@ class _LeaveRequestListState extends State<LeaveRequestList> {
                   ),
       ),
     );
+  }
+
+  getCardBackground(String status) {
+    if (status == 'LEAVEREQAPPROVED' || status == 'APPROVED') {
+      return Colors.green.shade400;
+    } else if (status == 'REJECTED' || status == 'LEAVEREQREJECTED') {
+      return Colors.red.shade400;
+    } else if (status == 'SUBMITTED' || status == 'LEAVEREQSUBMITTED') {
+      return Colors.orange.shade400;
+    } else {
+      return Colors.white;
+    }
   }
 }

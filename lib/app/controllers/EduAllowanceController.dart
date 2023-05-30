@@ -10,7 +10,8 @@ class EduAllowanceController extends GetxController {
   late List<EduAllowanceModel> myEduAllowanceList = <EduAllowanceModel>[].obs;
   var isLoadingEduAllowanceList = false.obs;
 
-  late List<EduAllowanceModel> eduAllowanceMasterList = <EduAllowanceModel>[].obs;
+  late List<EduAllowanceModel> eduAllowanceMasterList =
+      <EduAllowanceModel>[].obs;
   var isLoadingEduAllowanceMasterList = false.obs;
 
   String selectedEduAllowanceId = '';
@@ -21,7 +22,6 @@ class EduAllowanceController extends GetxController {
   var startDateController = TextEditingController();
   var remarksController = TextEditingController();
   var requestedAmountController = TextEditingController();
-
 
   String userId = '';
 
@@ -60,6 +60,7 @@ class EduAllowanceController extends GetxController {
     }
     isLoadingEduAllowanceMasterList(false);
   }
+
   changeEduAllowanceSelected(EduAllowanceModel item) {
     isLoadingEduAllowanceMasterList(true);
     selectedEduAllowance = item;
@@ -68,30 +69,30 @@ class EduAllowanceController extends GetxController {
     update();
   }
 
-
-
   Future saveEduAllowanceRequest() async {
     initial(false);
-    if(selectedEduAllowanceId == "" ) {
+    if (selectedEduAllowanceId == "") {
       //Get.snackbar('Edu Allowance'.tr, 'Select Edu Allowance'.tr);
-    }  else if( leaveDays > selectedEduAllowance.maxAllowed ){
-      Get.snackbar('Edu Allowance'.tr, "${'Max allowed days'.tr} ${selectedEduAllowance.maxAllowed}");
-    } else{
-      await _eduAllowanceService.saveEduAllowanceRequest(selectedEduAllowanceId,userId,startDateController.text,requestedAmountController.text,remarksController.text);
+    } else if (leaveDays > selectedEduAllowance.maxAllowed) {
+      Get.snackbar('Edu Allowance'.tr,
+          "${'Max allowed days'.tr} ${selectedEduAllowance.maxAllowed}");
+    } else {
+      await _eduAllowanceService.saveEduAllowanceRequest(
+          selectedEduAllowanceId,
+          userId,
+          startDateController.text,
+          requestedAmountController.text,
+          remarksController.text);
       reset();
     }
   }
 
-  reset(){
+  reset() {
     initial(true);
     selectedEduAllowanceId = '';
     leaveDays = -1;
     startDateController.clear();
     requestedAmountController.clear();
     remarksController.clear();
-
   }
-
-
-
 }

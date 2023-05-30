@@ -18,10 +18,8 @@ class _LoanListScreenState extends State<LoanListScreen> {
 
   @override
   void initState() {
-
-    WidgetsBinding.instance.addPostFrameCallback((_){
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       controller.loadAllLoanList();
-
     });
     super.initState();
   }
@@ -68,13 +66,17 @@ class _LoanListScreenState extends State<LoanListScreen> {
                           ),
                           child: GestureDetector(
                             onTap: () {
-
-                              Get.to(()=> LoadRequestDetailsScreen(id: loan.id ));
+                              Get.to(
+                                  () => LoadRequestDetailsScreen(id: loan.id));
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: getCardBackground(loan.status),
                                 borderRadius: BorderRadius.circular(8),
+                                border: Border.all(
+                                  color: Colors.grey.shade200,
+                                  width: 1,
+                                ),
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -82,21 +84,118 @@ class _LoanListScreenState extends State<LoanListScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      loan.remarks,
-                                      style: const TextStyle(
-                                        fontSize: 18,
+                                    const Text(
+                                      'Loan type :',
+                                      style: TextStyle(
+                                        fontSize: 16,
                                         color: Colors.black87,
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                     Text(
-                                      '${loan.requestedAmount}',
+                                      loan.loandMasterId,
                                       style: const TextStyle(
-                                        fontSize: 13,
-                                        color: Colors.black45,
+                                        fontSize: 16,
+                                        color: Colors.black87,
+                                        fontWeight: FontWeight.w300,
                                       ),
                                     ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        const Text(
+                                          'Requested ammount: ',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.black87,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        Text(
+                                          '${loan.requestedAmount} QAR',
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.black87,
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        const Text(
+                                          'Number of installment: ',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.black87,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        Text(
+                                          '${loan.noOfInstallment}',
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.black87,
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    loan.status == 'APPROVED'
+                                        ? Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              const SizedBox(height: 10),
+                                              Row(
+                                                children: [
+                                                  const Text(
+                                                    'Approved amount: ',
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.black87,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    '${loan.approvedAmount} QAR',
+                                                    style: const TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.black87,
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              const SizedBox(height: 10),
+                                              Row(
+                                                children: [
+                                                  const Text(
+                                                    'Installment amount: ',
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.black87,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    '${loan.installmentAmount} QAR',
+                                                    style: const TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.black87,
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          )
+                                        : Container()
                                   ],
                                 ),
                               ),
@@ -113,5 +212,19 @@ class _LoanListScreenState extends State<LoanListScreen> {
                   ),
       ),
     );
+  }
+
+  getCardBackground(String status) {
+    if (status == 'APPROVED') {
+      return Colors.green.shade400;
+    } else if (status == 'CLOSED') {
+      return Colors.grey.shade400;
+    } else if (status == 'REJECTED') {
+      return Colors.red.shade400;
+    } else if (status == 'SUBMITTED') {
+      return Colors.orange.shade400;
+    } else {
+      return Colors.white;
+    }
   }
 }
