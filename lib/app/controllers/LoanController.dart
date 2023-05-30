@@ -87,13 +87,13 @@ class LoanController extends GetxController {
   Future saveLoanRequest() async {
     initial(false);
     if (selectedLoanTypeId == "") {
-      Get.snackbar('Loan Request'.tr, 'Select loan type'.tr);
+      //Get.snackbar('Loan Request'.tr, 'Select loan type'.tr);
     } else if (requestedAmountController.text.isEmpty) {
-      Get.snackbar('Loan Request'.tr, 'Enter your requested amount'.tr);
+      //Get.snackbar('Loan Request'.tr, 'Enter your requested amount'.tr);
     }  else if (double. parse(requestedAmountController.text)  > selectedLoanType.maxAllowed) {
       Get.snackbar('Loan Request'.tr, "${'Max allowed'.tr} ${selectedLoanType.maxAllowed}");
     } else if (selectedNumberOfInstallment == "") {
-      Get.snackbar('Loan Request'.tr, "Choose the number of installment");
+      //Get.snackbar('Loan Request'.tr, "Choose the number of installment");
     } else {
       await _loanService.saveLoanRequest(
           selectedLoanTypeId,
