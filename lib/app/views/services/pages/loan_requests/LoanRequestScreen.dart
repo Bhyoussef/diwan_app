@@ -141,6 +141,46 @@ class _LoanRequestScreenState extends State<LoanRequestScreen> {
                         ),
                       ),
                       const SizedBox(height: 20),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 60,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color:
+                            const Color.fromARGB(255, 242, 242, 242),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 18),
+                            child: Row(
+                              children: [
+                                Text(
+                                  '${'Max allowed'.tr}: ',
+                                  style: const TextStyle(
+                                    color: Color(0xFF787A87),
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                _controller.selectedLoanTypeId != ''
+                                    ? Text(
+                                  _controller.selectedLoanType
+                                      .maxAllowed
+                                      .toString() ,
+                                  style: const TextStyle(
+                                    color: Color(0xFF787A87),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 18,
+                                  ),
+                                )
+                                    : Container(),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
                       TextFormField(
                         controller: _controller.requestedAmountController,
                         cursorHeight: 20,
@@ -157,6 +197,7 @@ class _LoanRequestScreenState extends State<LoanRequestScreen> {
                           hintStyle: const TextStyle(
                             color: Color(0xFF787A87),
                             fontWeight: FontWeight.w300,
+                            fontSize: 18,
                           ),
                           hintText: 'Requested Amount'.tr,
                           contentPadding: const EdgeInsets.only(
@@ -224,14 +265,13 @@ class _LoanRequestScreenState extends State<LoanRequestScreen> {
                                 children: [
                                   _controller.selectedNumberOfInstallment == ''
                                       ? Text(
-                                    "No Of Installment".tr,
+                                    "No of Installment".tr,
                                     style: const TextStyle(
                                       color: Color(0xFF787A87),
                                       fontWeight: FontWeight.w300,
                                       fontSize: 18,
                                     ),
-                                  )
-                                      : Text(
+                                  ) : Text(
                                     _controller.selectedNumberOfInstallment,
                                     style: const TextStyle(
                                       color: Color(0xFF787A87),
