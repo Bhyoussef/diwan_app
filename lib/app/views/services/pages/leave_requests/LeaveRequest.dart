@@ -55,6 +55,7 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                       child: Padding(
                         padding: const EdgeInsets.all(20),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             InkWell(
                               onTap: () {
@@ -77,12 +78,10 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                                             value: index,
                                             groupValue: null,
                                             onChanged: (value) {
-                                              KeyboardUtil.hideKeyboard(
-                                                  context);
-                                              _controller
-                                                  .changeMasterSelected(item);
+                                              KeyboardUtil.hideKeyboard(context);
+                                              _controller.changeMasterSelected(item);
                                               Navigator.of(context).pop();
-                                            },
+                                            }
                                           );
                                         },
                                       ),
@@ -137,7 +136,10 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 20),
+                            _controller.initial.isFalse &&  _controller.selectedLeaveId == "" ?
+                            Text("Select leave type".tr,style: const TextStyle(color: Colors.red),) :
+                            const SizedBox(),
+                            SizedBox(height: _controller.initial.isTrue ?  20 : 10 ),
                             SizedBox(
                               width: double.infinity,
                               height: 60,
@@ -233,7 +235,15 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                                 )
                               ),
                             ),
-                            const SizedBox(height: 20),
+
+
+
+                            _controller.initial.isFalse &&  _controller.startDateController.text.isEmpty ?
+                            Text("Select Start date".tr,style: const TextStyle(color: Colors.red),) :
+                            const SizedBox(),
+                            SizedBox(height: _controller.initial.isTrue ?  20 : 10 ),
+
+
                             TextFormField(
                               onTap: () async{
                                 var pickedDateDate = await showDatePicker(
@@ -290,7 +300,10 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                                     }),
                               ),
                             ),
-                            const SizedBox(height: 20),
+                            _controller.initial.isFalse &&  _controller.endDateController.text.isEmpty ?
+                            Text("Select End date".tr,style: const TextStyle(color: Colors.red)) :
+                            const SizedBox(),
+                            SizedBox(height: _controller.initial.isTrue ? 20 : 10),
                             SizedBox(
                               width: double.infinity,
                               height: 60,
@@ -322,7 +335,9 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 20),
+
+
+                            SizedBox(height: 20 ),
                             TextFormField(
                               controller: _controller.remarksController,
                               cursorHeight: 20,

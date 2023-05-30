@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import '../helpers/shared_preferences.dart';
 
 class LeaveController extends GetxController {
+  var initial = true.obs;
   ScrollController scrollController = ScrollController();
 
   final LeaveService _leaveService = LeaveService();
@@ -15,9 +16,11 @@ class LeaveController extends GetxController {
 
   late LeaveMaster selectedMaster;
   String selectedLeaveId = '';
+
   var startDateController = TextEditingController();
   var endDateController = TextEditingController();
   var remarksController = TextEditingController();
+
   int leaveDays = -1;
   var isLoading = false.obs;
   var isLoadingMaster = false.obs;
@@ -67,13 +70,14 @@ class LeaveController extends GetxController {
   }
 
   Future saveLeaveRequest() async {
+    initial(false);
     if (selectedLeaveId == "") {
-      Get.snackbar('leave_request'.tr, 'Select leave type'.tr);
+      //Get.snackbar('leave_request'.tr, 'Select leave type'.tr);
     } else if (leaveDays == -1 ||
         endDateController.text.isEmpty ||
         startDateController.text.isEmpty ||
         leaveDays <= 0) {
-      Get.snackbar('leave_request'.tr, 'Select leave dates'.tr);
+      //Get.snackbar('leave_request'.tr, 'Select leave dates'.tr);
     } else if (leaveDays > selectedMaster.maxAllowedDays) {
       Get.snackbar('leave_request'.tr,
           "${'available_leave_days'.tr} ${selectedMaster.maxAllowedDays}");
@@ -89,6 +93,7 @@ class LeaveController extends GetxController {
   }
 
   reset() {
+    initial(true);
     selectedLeaveId = '';
     leaveDays = -1;
     startDateController.clear();
