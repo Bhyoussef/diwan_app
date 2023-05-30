@@ -73,7 +73,7 @@ class EduAllowanceController extends GetxController {
   Future saveEduAllowanceRequest() async {
     initial(false);
     if(selectedEduAllowanceId == "" ) {
-      Get.snackbar('Edu Allowance'.tr, 'Select Edu Allowance'.tr);
+      //Get.snackbar('Edu Allowance'.tr, 'Select Edu Allowance'.tr);
     }  else if( leaveDays > selectedEduAllowance.maxAllowed ){
       Get.snackbar('Edu Allowance'.tr, "${'Max allowed days'.tr} ${selectedEduAllowance.maxAllowed}");
     } else{
