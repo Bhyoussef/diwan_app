@@ -18,7 +18,11 @@ class _LoanListScreenState extends State<LoanListScreen> {
 
   @override
   void initState() {
-    controller.loadAllLoanList();
+
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      controller.loadAllLoanList();
+
+    });
     super.initState();
   }
 

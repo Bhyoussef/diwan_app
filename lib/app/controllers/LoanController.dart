@@ -35,6 +35,15 @@ class LoanController extends GetxController {
   String selectedNumberOfInstallment = "";
 
 
+  @override
+  void onInit() {
+    SharedData.getFromStorage('EMPLOYEE_ID', 'string').then((id) async {
+      userId = id;
+    });
+
+    super.onInit();
+  }
+
   Future loadAllLoanTypes() async {
     isLoadingLoanTypes(true);
     var response = await _loanService.getLoanTypes();
@@ -78,5 +87,31 @@ class LoanController extends GetxController {
       loanDetailsModel = response;
     }
     isLoadingLoanDetails(false);
+  }
+
+
+  Future saveLoanRequest() async {
+    if (selectedLoanTypeId == "") {
+      Get.snackbar('Loan Request'.tr, 'Select loan type'.tr);
+    } else if (requestedAmountController.text.isEmpty) {
+      Get.snackbar('Loan Request'.tr, 'Enter your requested amount'.tr);
+    } else if (double. parse(requestedAmountController.text)  > selectedLoanType.maxAllowed) {
+      Get.snackbar('Loan Request'.tr, "${'Max Amount is'.tr} ${selectedLoanType.maxAllowed}");
+    } else {
+      await _loanService.saveLoanRequest(
+          selectedLoanTypeId,
+          userId,
+          requestedAmountController.text,
+          selectedNumberOfInstallment,
+          remarksController.text
+      );
+      reset();
+    }
+  }
+  reset() {
+    selectedLoanTypeId = '';
+    selectedNumberOfInstallment = '';
+    requestedAmountController.clear();
+    remarksController.clear();
   }
 }

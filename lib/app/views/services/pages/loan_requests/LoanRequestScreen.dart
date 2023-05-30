@@ -231,7 +231,12 @@ class _LoanRequestScreenState extends State<LoanRequestScreen> {
                                       onChanged: (value) {
                                         KeyboardUtil.hideKeyboard(context);
                                         _controller.selectedNumberOfInstallment = item.toString();
+                                        _controller.update();
+
                                         Navigator.of(context).pop();
+                                        setState(() {
+
+                                        });
                                       },
                                     );
                                   },
@@ -319,7 +324,7 @@ class _LoanRequestScreenState extends State<LoanRequestScreen> {
                       const SizedBox(height: 20),
                       PadiwanButton(
                         onPressed: () {
-                          //_controller.saveLeaveRequest();
+                          _controller.saveLoanRequest();
                         },
                         isLoading: false,
                         text: 'send_request'.tr,
