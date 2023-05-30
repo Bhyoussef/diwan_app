@@ -4,6 +4,8 @@ import 'package:diwanapp/app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'LoanRequestDetailsScreen.dart';
+
 class LoanListScreen extends StatefulWidget {
   const LoanListScreen({super.key});
 
@@ -61,7 +63,10 @@ class _LoanListScreenState extends State<LoanListScreen> {
                             right: 16,
                           ),
                           child: GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+
+                              Get.to(()=> LoadRequestDetailsScreen(id: loan.id ));
+                            },
                             child: Container(
                               decoration: BoxDecoration(
                                 color: Colors.white,

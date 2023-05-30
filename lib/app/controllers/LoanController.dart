@@ -5,16 +5,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../models/loan_details_model.dart';
+
 class LoanController extends GetxController {
   ScrollController scrollController = ScrollController();
 
   final LoanService _loanService = LoanService();
-
   late List<Loan> loanList = <Loan>[].obs;
-
   var isLoading = false.obs;
 
   String userId = '';
+
+  late LoanDetailsModel? loanDetailsModel;
+  var isLoadingLoanDetails = false.obs;
 
   Future loadAllLoanList() async {
     isLoading(true);
@@ -28,5 +31,16 @@ class LoanController extends GetxController {
       }
       isLoading(false);
     });
+  }
+
+  Future loadRequestDetailsById(String id) async {
+    loanDetailsModel = null;
+    isLoadingLoanDetails(true);
+    var response = await _loanService.getLoanRequestDetailsById(id);
+
+    if (response != null) {
+      loanDetailsModel = response;
+    }
+    isLoadingLoanDetails(false);
   }
 }

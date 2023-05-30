@@ -1,10 +1,12 @@
+// To parse this JSON data, do
+//
+//     final loanDetailsModel = loanDetailsModelFromJson(jsonString);
+
 import 'dart:convert';
 
-List<LoanDetailsModel> loanFromJson(String str) =>
-    List<LoanDetailsModel>.from(json.decode(str).map((x) => LoanDetailsModel.fromJson(x)));
+LoanDetailsModel loanDetailsModelFromJson(String str) => LoanDetailsModel.fromJson(json.decode(str));
 
-String loanToJson(List<LoanDetailsModel> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String loanDetailsModelToJson(LoanDetailsModel data) => json.encode(data.toJson());
 
 class LoanDetailsModel {
   String loandMasterId;
@@ -65,12 +67,12 @@ class LoanDetailsModel {
     noOfInstallment: json["noOfInstallment"],
     startDate: DateTime.parse(json["startDate"]),
     remarks: json["remarks"],
-    installmentAmount: json["installmentAmount"]?.toDouble(),
+    installmentAmount: json["installmentAmount"],
     status: json["status"],
     totelAddition: json["totelAddition"],
     totelDeduction: json["totelDeduction"],
     deduction: json["deduction"],
-    pendingLoanAmount: json["pendingLoanAmount"]?.toDouble(),
+    pendingLoanAmount: json["pendingLoanAmount"],
     approvedLevel: json["approvedLevel"],
     hrDepartment: json["hrDepartment"],
     headOfHrDepartment: json["headOfHrDepartment"],

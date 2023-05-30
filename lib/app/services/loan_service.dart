@@ -3,6 +3,8 @@ import 'package:diwanapp/app/services/base_client.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as Dio;
 
+import '../models/loan_details_model.dart';
+
 class LoanService extends GetxService {
   Future getMyLoanList(userId) async {
     try {
@@ -15,6 +17,28 @@ class LoanService extends GetxService {
         List<Loan> approvelList = [];
         approvelList = responseData.map((json) => Loan.fromJson(json)).toList();
         return approvelList;
+      } else {
+        return null;
+      }
+    } on Dio.DioError catch (e) {
+      // Backend Form Validation Error
+      if (e.type == Dio.DioErrorType.unknown) {
+        Get.snackbar('Server Error'.tr, 'A network error occurred'.tr);
+      }
+      return null;
+    }
+  }
+
+  Future getLoanRequestDetailsById(id) async {
+    try {
+      Dio.Response response = await dio().get(
+        '/mobileservice/getLoanRequestById/$id',
+      );
+
+      if (response.statusCode == 200) {
+        final responseData = LoanDetailsModel.fromJson(response.data);
+
+        return responseData;
       } else {
         return null;
       }
