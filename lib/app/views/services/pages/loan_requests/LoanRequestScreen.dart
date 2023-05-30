@@ -56,6 +56,7 @@ class _LoanRequestScreenState extends State<LoanRequestScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(20),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       InkWell(
                         onTap: () {
@@ -138,7 +139,14 @@ class _LoanRequestScreenState extends State<LoanRequestScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      _controller.initial.isFalse &&  _controller.selectedLoanTypeId == ""?
+                      const Text("Select loan type",style: TextStyle(color: Colors.red),)
+                      :const SizedBox(),
+
+
+
+
+                       SizedBox(height: _controller.initial.isTrue ?  20 : 10 ),
                       SizedBox(
                         width: double.infinity,
                         height: 60,
@@ -208,7 +216,11 @@ class _LoanRequestScreenState extends State<LoanRequestScreen> {
                           focusColor: AppColor.primaryGreyColor,
                         ),
                       ),
-                      const SizedBox(height: 20),
+
+                      _controller.initial.isFalse &&  _controller.requestedAmountController.text.isEmpty ?
+                      const Text("Enter your requested amount",style: TextStyle(color: Colors.red),) :
+                      const SizedBox(),
+                      SizedBox(height: _controller.initial.isTrue ?  20 : 10 ),
                       InkWell(
                         onTap: () {
                           KeyboardUtil.hideKeyboard(context);
@@ -288,7 +300,12 @@ class _LoanRequestScreenState extends State<LoanRequestScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
+
+
+                      _controller.initial.isFalse &&  _controller.selectedNumberOfInstallment == "" ?
+                      const Text("Choose the number of installment",style: TextStyle(color: Colors.red),) :
+                      const SizedBox(),
+                      SizedBox(height: _controller.initial.isTrue ?  20 : 10 ),
 
                       TextFormField(
                         controller: _controller.remarksController,

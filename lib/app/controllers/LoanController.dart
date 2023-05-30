@@ -9,29 +9,22 @@ import '../models/loan_details_model.dart';
 import '../models/loan_types_model.dart';
 
 class LoanController extends GetxController {
+  var initial = true.obs;
   ScrollController scrollController = ScrollController();
-  final LoanService _loanService = LoanService();
+  var remarksController = TextEditingController();
+  var requestedAmountController = TextEditingController();
 
+  final LoanService _loanService = LoanService();
   late List<Loan> loanList = <Loan>[].obs;
   var isLoading = false.obs;
-
-
   late List<LoanTypesModel> loanTypesList = <LoanTypesModel>[].obs;
   var isLoadingLoanTypes = false.obs;
   late LoanTypesModel selectedLoanType;
   String selectedLoanTypeId = '';
-
-  var remarksController = TextEditingController();
-  var requestedAmountController = TextEditingController();
-
-
   String userId = '';
-
   late LoanDetailsModel? loanDetailsModel;
   var isLoadingLoanDetails = false.obs;
-
   List<int> numberOfInstallmentList = [12,36,24,48,60];
-
   String selectedNumberOfInstallment = "";
 
 
@@ -92,6 +85,7 @@ class LoanController extends GetxController {
 
 
   Future saveLoanRequest() async {
+    initial(false);
     if (selectedLoanTypeId == "") {
       Get.snackbar('Loan Request'.tr, 'Select loan type'.tr);
     } else if (requestedAmountController.text.isEmpty) {
@@ -112,6 +106,7 @@ class LoanController extends GetxController {
     }
   }
   reset() {
+
     selectedLoanTypeId = '';
     selectedNumberOfInstallment = '';
     requestedAmountController.clear();
