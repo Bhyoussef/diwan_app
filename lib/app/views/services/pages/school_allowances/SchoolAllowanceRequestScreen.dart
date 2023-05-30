@@ -56,6 +56,7 @@ class _SchoolAllowanceRequestScreenState extends State<SchoolAllowanceRequestScr
                 child: Padding(
                   padding: const EdgeInsets.all(20),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       InkWell(
                         onTap: () {
@@ -137,7 +138,12 @@ class _SchoolAllowanceRequestScreenState extends State<SchoolAllowanceRequestScr
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
+
+
+                      _controller.initial.isFalse &&  _controller.selectedEduAllowanceId == "" ?
+                      const Text("Select Edu Allowance",style: TextStyle(color: Colors.red)):
+                      const SizedBox(),
+                      SizedBox(height: _controller.initial.isTrue ?  20 : 10 ),
                       SizedBox(
                         width: double.infinity,
                         height: 60,
@@ -234,7 +240,10 @@ class _SchoolAllowanceRequestScreenState extends State<SchoolAllowanceRequestScr
                         ),
                       ),
 
-                      const SizedBox(height: 20),
+                      _controller.initial.isFalse &&  _controller.startDateController.text.isEmpty ?
+                      const Text("Select Edu Allowance",style: TextStyle(color: Colors.red)):
+                      const SizedBox(),
+                      SizedBox(height: _controller.initial.isTrue ?  20 : 10 ),
                       SizedBox(
                         width: double.infinity,
                         height: 60,
@@ -293,7 +302,11 @@ class _SchoolAllowanceRequestScreenState extends State<SchoolAllowanceRequestScr
                           focusColor: AppColor.primaryGreyColor,
                         ),
                       ),
-                      const SizedBox(height: 20),
+
+                      _controller.initial.isFalse &&  _controller.requestedAmountController.text.isEmpty ?
+                      const Text("Enter your requested amount",style: TextStyle(color: Colors.red)):
+                      const SizedBox(),
+                      SizedBox(height: _controller.initial.isTrue ?  20 : 10 ),
                       TextFormField(
                         controller: _controller.remarksController,
                         cursorHeight: 20,

@@ -5,6 +5,7 @@ import '../models/edu_allowance_model.dart';
 import '../services/edu_allowance_service.dart';
 
 class EduAllowanceController extends GetxController {
+  var initial = true.obs;
   ScrollController scrollController = ScrollController();
   late List<EduAllowanceModel> myEduAllowanceList = <EduAllowanceModel>[].obs;
   var isLoadingEduAllowanceList = false.obs;
@@ -16,8 +17,8 @@ class EduAllowanceController extends GetxController {
   int leaveDays = -1;
   late EduAllowanceModel selectedEduAllowance;
   final EduAllowanceService _eduAllowanceService = EduAllowanceService();
-  var startDateController = TextEditingController();
 
+  var startDateController = TextEditingController();
   var remarksController = TextEditingController();
   var requestedAmountController = TextEditingController();
 
@@ -70,10 +71,9 @@ class EduAllowanceController extends GetxController {
 
 
   Future saveEduAllowanceRequest() async {
+    initial(false);
     if(selectedEduAllowanceId == "" ) {
       Get.snackbar('Edu Allowance'.tr, 'Select Edu Allowance'.tr);
-
-
     }  else if( leaveDays > selectedEduAllowance.maxAllowed ){
       Get.snackbar('Edu Allowance'.tr, "${'Max allowed days'.tr} ${selectedEduAllowance.maxAllowed}");
     } else{
@@ -83,9 +83,11 @@ class EduAllowanceController extends GetxController {
   }
 
   reset(){
+    initial(true);
     selectedEduAllowanceId = '';
     leaveDays = -1;
     startDateController.clear();
+    requestedAmountController.clear();
     remarksController.clear();
 
   }
