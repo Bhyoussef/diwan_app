@@ -220,9 +220,7 @@ class _LoanRequestScreenState extends State<LoanRequestScreen> {
                       _controller.initial.isFalse &&  _controller.requestedAmountController.text.isEmpty ?
                       const Text("Enter your requested amount",style: TextStyle(color: Colors.red)) :
                       _controller.requestedAmountController.text.isNotEmpty &&  double. parse(_controller.requestedAmountController.text)  > _controller.selectedLoanType.maxAllowed?
-                      Text("${'Max allowed'.tr} ${_controller.selectedLoanType.maxAllowed}",style: const TextStyle(color: Colors.red))
-
-                          :
+                      Text("${'Max allowed'.tr} ${_controller.selectedLoanType.maxAllowed}",style: const TextStyle(color: Colors.red)) :
                       const SizedBox(),
                       SizedBox(height: _controller.initial.isTrue ?  20 : 10 ),
                       InkWell(

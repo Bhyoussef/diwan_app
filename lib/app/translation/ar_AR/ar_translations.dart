@@ -55,7 +55,12 @@ final Map<String, String> ar = {
   'Select leave type': 'حدد إجازة',
   'Leave request saved': 'تم حفظ طلب المغادرة',
   'Select leave dates': 'حدد تواريخ الإجازة',
-  'school_allowance_request': 'طلب بدل المدرسة'
+  'school_allowance_request': 'طلب بدل المدرسة',
+  'Loan type :': 'نوع القرض:',
+  'Requested amount: ': 'المبلغ المطلوب: ',
+  'Number of installments: ': 'عدد الاقساط: ',
+  'Approved amount: ': ' المبلغ المعتمد:',
+  'Installment amount: ': 'تقسيط المبلغ: ',
 
 
 };

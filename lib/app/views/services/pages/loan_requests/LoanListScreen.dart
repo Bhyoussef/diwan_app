@@ -84,9 +84,9 @@ class _LoanListScreenState extends State<LoanListScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Text(
-                                      'Loan type :',
-                                      style: TextStyle(
+                                    Text(
+                                      'Loan type :'.tr,
+                                      style: const TextStyle(
                                         fontSize: 16,
                                         color: Colors.black87,
                                         fontWeight: FontWeight.w600,
@@ -103,9 +103,9 @@ class _LoanListScreenState extends State<LoanListScreen> {
                                     const SizedBox(height: 10),
                                     Row(
                                       children: [
-                                        const Text(
-                                          'Requested ammount: ',
-                                          style: TextStyle(
+                                         Text(
+                                          'Requested amount: '.tr,
+                                          style: const TextStyle(
                                             fontSize: 16,
                                             color: Colors.black87,
                                             fontWeight: FontWeight.w600,
@@ -124,9 +124,9 @@ class _LoanListScreenState extends State<LoanListScreen> {
                                     const SizedBox(height: 10),
                                     Row(
                                       children: [
-                                        const Text(
-                                          'Number of installment: ',
-                                          style: TextStyle(
+                                         Text(
+                                          'Number of installments: '.tr,
+                                          style: const TextStyle(
                                             fontSize: 16,
                                             color: Colors.black87,
                                             fontWeight: FontWeight.w600,
@@ -150,9 +150,9 @@ class _LoanListScreenState extends State<LoanListScreen> {
                                               const SizedBox(height: 10),
                                               Row(
                                                 children: [
-                                                  const Text(
-                                                    'Approved amount: ',
-                                                    style: TextStyle(
+                                                   Text(
+                                                    'Approved amount: '.tr,
+                                                    style: const TextStyle(
                                                       fontSize: 16,
                                                       color: Colors.black87,
                                                       fontWeight:
@@ -173,9 +173,9 @@ class _LoanListScreenState extends State<LoanListScreen> {
                                               const SizedBox(height: 10),
                                               Row(
                                                 children: [
-                                                  const Text(
-                                                    'Installment amount: ',
-                                                    style: TextStyle(
+                                                   Text(
+                                                    'Installment amount: '.tr,
+                                                    style: const TextStyle(
                                                       fontSize: 16,
                                                       color: Colors.black87,
                                                       fontWeight:
