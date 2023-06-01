@@ -61,6 +61,7 @@ final Map<String, String> ar = {
   'Number of installments: ': 'عدد الاقساط: ',
   'Approved amount: ': ' المبلغ المعتمد:',
   'Installment amount: ': 'تقسيط المبلغ: ',
+  'Failed to load loan request details': 'فشل تحميل تفاصيل طلب القرض',
 
 
 };
