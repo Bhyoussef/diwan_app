@@ -133,10 +133,10 @@ class _HomeDrawerState extends State<HomeDrawer> {
                       width: 60,
                     ),
                     const SizedBox(width: 13),
-                    Column(
+                    const Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           'name',
                           style: TextStyle(fontSize: 10),
